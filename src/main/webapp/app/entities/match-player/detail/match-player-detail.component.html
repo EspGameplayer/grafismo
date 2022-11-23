@@ -1,0 +1,48 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="matchPlayer">
+      <h2 data-cy="matchPlayerDetailsHeading"><span jhiTranslate="grafismoApp.matchPlayer.detail.title">Match Player</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ matchPlayer.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.matchPlayer.shirtNumber">Shirt Number</span></dt>
+        <dd>
+          <span>{{ matchPlayer.shirtNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.matchPlayer.isWarned">Is Warned</span></dt>
+        <dd>
+          <span>{{ matchPlayer.isWarned }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.matchPlayer.player">Player</span></dt>
+        <dd>
+          <div *ngIf="matchPlayer.player">
+            <a [routerLink]="['/player', matchPlayer.player?.id, 'view']">{{ matchPlayer.player?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.matchPlayer.position">Position</span></dt>
+        <dd>
+          <div *ngIf="matchPlayer.position">
+            <a [routerLink]="['/position', matchPlayer.position?.id, 'view']">{{ matchPlayer.position?.abb }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/match-player', matchPlayer.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

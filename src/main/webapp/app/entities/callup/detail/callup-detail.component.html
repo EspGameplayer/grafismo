@@ -1,0 +1,59 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="callup">
+      <h2 data-cy="callupDetailsHeading"><span jhiTranslate="grafismoApp.callup.detail.title">Callup</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ callup.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.callup.captain">Captain</span></dt>
+        <dd>
+          <div *ngIf="callup.captain">
+            <a [routerLink]="['/match-player', callup.captain?.id, 'view']">{{ callup.captain?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.callup.dt">Dt</span></dt>
+        <dd>
+          <div *ngIf="callup.dt">
+            <a [routerLink]="['/team-staff-member', callup.dt?.id, 'view']">{{ callup.dt?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.callup.dt2">Dt 2</span></dt>
+        <dd>
+          <div *ngIf="callup.dt2">
+            <a [routerLink]="['/team-staff-member', callup.dt2?.id, 'view']">{{ callup.dt2?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.callup.teamDelegate">Team Delegate</span></dt>
+        <dd>
+          <div *ngIf="callup.teamDelegate">
+            <a [routerLink]="['/team-staff-member', callup.teamDelegate?.id, 'view']">{{ callup.teamDelegate?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.callup.player">Player</span></dt>
+        <dd>
+          <span *ngFor="let player of callup.players; let last = last">
+            <a [routerLink]="['/match-player', player?.id, 'view']">{{ player.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/callup', callup.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

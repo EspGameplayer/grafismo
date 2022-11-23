@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="deduction">
+      <h2 data-cy="deductionDetailsHeading"><span jhiTranslate="grafismoApp.deduction.detail.title">Deduction</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ deduction.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.deduction.points">Points</span></dt>
+        <dd>
+          <span>{{ deduction.points }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.deduction.moment">Moment</span></dt>
+        <dd>
+          <span>{{ deduction.moment | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.deduction.reason">Reason</span></dt>
+        <dd>
+          <span>{{ deduction.reason }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.deduction.team">Team</span></dt>
+        <dd>
+          <div *ngIf="deduction.team">
+            <a [routerLink]="['/team', deduction.team?.id, 'view']">{{ deduction.team?.graphicsName }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.deduction.competition">Competition</span></dt>
+        <dd>
+          <div *ngIf="deduction.competition">
+            <a [routerLink]="['/competition', deduction.competition?.id, 'view']">{{ deduction.competition?.graphicsName }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/deduction', deduction.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

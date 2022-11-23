@@ -1,0 +1,77 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-lineup-heading" data-cy="LineupCreateUpdateHeading" jhiTranslate="grafismoApp.lineup.home.createOrEditLabel">
+        Create or edit a Lineup
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.lineup.callup" for="field_callup">Callup</label>
+          <select class="form-control" id="field_callup" data-cy="callup" name="callup" formControlName="callup">
+            <option *ngIf="editForm.get(['callup'])!.value == null" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="callupOption.id === editForm.get('callup')!.value?.id ? editForm.get('callup')!.value : callupOption"
+              *ngFor="let callupOption of callupsCollection; trackBy: trackCallupById"
+            >
+              {{ callupOption.id }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['callup'])!.invalid && (editForm.get(['callup'])!.dirty || editForm.get(['callup'])!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get(['callup'])?.errors?.required" jhiTranslate="entity.validation.required">
+            This field is required.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.lineup.formation" for="field_formation">Formation</label>
+          <select class="form-control" id="field_formation" data-cy="formation" name="formation" formControlName="formation">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="formationOption.id === editForm.get('formation')!.value?.id ? editForm.get('formation')!.value : formationOption"
+              *ngFor="let formationOption of formationsSharedCollection; trackBy: trackFormationById"
+            >
+              {{ formationOption.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="grafismoApp.lineup.player" for="field_players">Player</label>
+          <select class="form-control" id="field_players" data-cy="player" multiple name="players" formControlName="players">
+            <option
+              [ngValue]="getSelectedMatchPlayer(matchPlayerOption, editForm.get('players')!.value)"
+              *ngFor="let matchPlayerOption of matchPlayersSharedCollection; trackBy: trackMatchPlayerById"
+            >
+              {{ matchPlayerOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

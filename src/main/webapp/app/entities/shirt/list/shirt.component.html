@@ -1,0 +1,92 @@
+<div>
+  <h2 id="page-heading" data-cy="ShirtHeading">
+    <span jhiTranslate="grafismoApp.shirt.home.title">Shirts</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="grafismoApp.shirt.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-shirt"
+        [routerLink]="['/shirt/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="grafismoApp.shirt.home.createLabel"> Create a new Shirt </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="shirts?.length === 0">
+    <span jhiTranslate="grafismoApp.shirt.home.notFound">No shirts found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="shirts && shirts.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="reset()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="colour1">
+            <span jhiTranslate="grafismoApp.shirt.colour1">Colour 1</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="colour2">
+            <span jhiTranslate="grafismoApp.shirt.colour2">Colour 2</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="type"><span jhiTranslate="grafismoApp.shirt.type">Type</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="team.graphicsName">
+            <span jhiTranslate="grafismoApp.shirt.team">Team</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="season.name">
+            <span jhiTranslate="grafismoApp.shirt.season">Season</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let shirt of shirts; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/shirt', shirt.id, 'view']">{{ shirt.id }}</a>
+          </td>
+          <td>{{ shirt.colour1 }}</td>
+          <td>{{ shirt.colour2 }}</td>
+          <td>{{ shirt.type }}</td>
+          <td>
+            <div *ngIf="shirt.team">
+              <a [routerLink]="['/team', shirt.team?.id, 'view']">{{ shirt.team?.graphicsName }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="shirt.season">
+              <a [routerLink]="['/season', shirt.season?.id, 'view']">{{ shirt.season?.name }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/shirt', shirt.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/shirt', shirt.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(shirt)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

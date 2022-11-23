@@ -1,0 +1,33 @@
+{
+  "grafismoApp": {
+    "competition": {
+      "home": {
+        "title": "Competitions",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Competition",
+        "createOrEditLabel": "Crear o editar Competition",
+        "notFound": "Ningún Competitions encontrado"
+      },
+      "created": "Un nuevo Competition ha sido creado con el identificador {{ param }}",
+      "updated": "Un Competition ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Competition ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Competition {{ id }}?"
+      },
+      "detail": {
+        "title": "Competition"
+      },
+      "id": "ID",
+      "name": "Name",
+      "graphicsName": "Graphics Name",
+      "type": "Type",
+      "colour": "Colour",
+      "suspensionYcMatches": "Suspension Yc Matches",
+      "sponsor": "Sponsor",
+      "motmSponsor": "Motm Sponsor",
+      "parent": "Parent",
+      "team": "Team",
+      "child": "Child"
+    }
+  }
+}

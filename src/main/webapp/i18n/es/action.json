@@ -1,0 +1,30 @@
+{
+  "grafismoApp": {
+    "action": {
+      "home": {
+        "title": "Actions",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Action",
+        "createOrEditLabel": "Crear o editar Action",
+        "notFound": "Ningún Actions encontrado"
+      },
+      "created": "Un nuevo Action ha sido creado con el identificador {{ param }}",
+      "updated": "Un Action ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Action ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Action {{ id }}?"
+      },
+      "detail": {
+        "title": "Action"
+      },
+      "id": "ID",
+      "minute": "Minute",
+      "second": "Second",
+      "period": "Period",
+      "type": "Type",
+      "status": "Status",
+      "matchStats": "Match Stats",
+      "player": "Player"
+    }
+  }
+}

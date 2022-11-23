@@ -1,0 +1,120 @@
+<div>
+  <h2 id="page-heading" data-cy="CompetitionHeading">
+    <span jhiTranslate="grafismoApp.competition.home.title">Competitions</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="grafismoApp.competition.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-competition"
+        [routerLink]="['/competition/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="grafismoApp.competition.home.createLabel"> Create a new Competition </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="competitions?.length === 0">
+    <span jhiTranslate="grafismoApp.competition.home.notFound">No competitions found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="competitions && competitions.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="reset()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="name">
+            <span jhiTranslate="grafismoApp.competition.name">Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="graphicsName">
+            <span jhiTranslate="grafismoApp.competition.graphicsName">Graphics Name</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="type">
+            <span jhiTranslate="grafismoApp.competition.type">Type</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="colour">
+            <span jhiTranslate="grafismoApp.competition.colour">Colour</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="suspensionYcMatches">
+            <span jhiTranslate="grafismoApp.competition.suspensionYcMatches">Suspension Yc Matches</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="sponsor.name">
+            <span jhiTranslate="grafismoApp.competition.sponsor">Sponsor</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="motmSponsor.name">
+            <span jhiTranslate="grafismoApp.competition.motmSponsor">Motm Sponsor</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="parent.graphicsName">
+            <span jhiTranslate="grafismoApp.competition.parent">Parent</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let competition of competitions; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/competition', competition.id, 'view']">{{ competition.id }}</a>
+          </td>
+          <td>{{ competition.name }}</td>
+          <td>{{ competition.graphicsName }}</td>
+          <td jhiTranslate="{{ 'grafismoApp.CompetitionType.' + competition.type }}">{{ competition.type }}</td>
+          <td>{{ competition.colour }}</td>
+          <td>{{ competition.suspensionYcMatches }}</td>
+          <td>
+            <div *ngIf="competition.sponsor">
+              <a [routerLink]="['/sponsor', competition.sponsor?.id, 'view']">{{ competition.sponsor?.name }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="competition.motmSponsor">
+              <a [routerLink]="['/sponsor', competition.motmSponsor?.id, 'view']">{{ competition.motmSponsor?.name }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="competition.parent">
+              <a [routerLink]="['/competition', competition.parent?.id, 'view']">{{ competition.parent?.graphicsName }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/competition', competition.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/competition', competition.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(competition)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

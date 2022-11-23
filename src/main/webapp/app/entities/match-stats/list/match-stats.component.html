@@ -1,0 +1,97 @@
+<div>
+  <h2 id="page-heading" data-cy="MatchStatsHeading">
+    <span jhiTranslate="grafismoApp.matchStats.home.title">Match Stats</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="grafismoApp.matchStats.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-match-stats"
+        [routerLink]="['/match-stats/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="grafismoApp.matchStats.home.createLabel"> Create a new Match Stats </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="matchStats?.length === 0">
+    <span jhiTranslate="grafismoApp.matchStats.home.notFound">No matchStats found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="matchStats && matchStats.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="reset()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="homePossessionTime">
+            <span jhiTranslate="grafismoApp.matchStats.homePossessionTime">Home Possession Time</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="awayPossessionTime">
+            <span jhiTranslate="grafismoApp.matchStats.awayPossessionTime">Away Possession Time</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="inContestPossessionTime">
+            <span jhiTranslate="grafismoApp.matchStats.inContestPossessionTime">In Contest Possession Time</span>
+            <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="match.id">
+            <span jhiTranslate="grafismoApp.matchStats.match">Match</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let matchStats of matchStats; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/match-stats', matchStats.id, 'view']">{{ matchStats.id }}</a>
+          </td>
+          <td>{{ matchStats.homePossessionTime }}</td>
+          <td>{{ matchStats.awayPossessionTime }}</td>
+          <td>{{ matchStats.inContestPossessionTime }}</td>
+          <td>
+            <div *ngIf="matchStats.match">
+              <a [routerLink]="['/match', matchStats.match?.id, 'view']">{{ matchStats.match?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/match-stats', matchStats.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/match-stats', matchStats.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(matchStats)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

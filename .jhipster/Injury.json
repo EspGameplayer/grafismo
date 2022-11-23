@@ -1,0 +1,36 @@
+{
+  "applications": "*",
+  "changelogDate": "20221123195937",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "injury",
+  "fields": [
+    {
+      "fieldName": "moment",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "estReturnDate",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "reason",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Injury",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "player",
+      "otherEntityRelationshipName": "injury",
+      "relationshipName": "player",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "serviceClass"
+}

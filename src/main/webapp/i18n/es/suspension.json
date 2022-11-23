@@ -1,0 +1,28 @@
+{
+  "grafismoApp": {
+    "suspension": {
+      "home": {
+        "title": "Suspensions",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Suspension",
+        "createOrEditLabel": "Crear o editar Suspension",
+        "notFound": "Ningún Suspensions encontrado"
+      },
+      "created": "Un nuevo Suspension ha sido creado con el identificador {{ param }}",
+      "updated": "Un Suspension ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Suspension ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Suspension {{ id }}?"
+      },
+      "detail": {
+        "title": "Suspension"
+      },
+      "id": "ID",
+      "matches": "Matches",
+      "moment": "Moment",
+      "reason": "Reason",
+      "person": "Person",
+      "competition": "Competition"
+    }
+  }
+}

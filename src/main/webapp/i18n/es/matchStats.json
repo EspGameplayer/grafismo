@@ -1,0 +1,28 @@
+{
+  "grafismoApp": {
+    "matchStats": {
+      "home": {
+        "title": "Match Stats",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Match Stats",
+        "createOrEditLabel": "Crear o editar Match Stats",
+        "notFound": "Ningún Match Stats encontrado"
+      },
+      "created": "Un nuevo Match Stats ha sido creado con el identificador {{ param }}",
+      "updated": "Un Match Stats ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Match Stats ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Match Stats {{ id }}?"
+      },
+      "detail": {
+        "title": "Match Stats"
+      },
+      "id": "ID",
+      "homePossessionTime": "Home Possession Time",
+      "awayPossessionTime": "Away Possession Time",
+      "inContestPossessionTime": "In Contest Possession Time",
+      "match": "Match",
+      "action": "Action"
+    }
+  }
+}

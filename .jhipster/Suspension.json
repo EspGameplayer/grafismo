@@ -1,0 +1,47 @@
+{
+  "applications": "*",
+  "changelogDate": "20221123195936",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "suspension",
+  "fields": [
+    {
+      "fieldName": "matches",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "1"
+    },
+    {
+      "fieldName": "moment",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "reason",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Suspension",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "graphicsName",
+      "otherEntityName": "person",
+      "otherEntityRelationshipName": "suspension",
+      "relationshipName": "person",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "graphicsName",
+      "otherEntityName": "competition",
+      "otherEntityRelationshipName": "suspension",
+      "relationshipName": "competition",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "serviceClass"
+}

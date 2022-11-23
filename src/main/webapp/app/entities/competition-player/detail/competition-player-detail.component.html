@@ -1,0 +1,55 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="competitionPlayer">
+      <h2 data-cy="competitionPlayerDetailsHeading">
+        <span jhiTranslate="grafismoApp.competitionPlayer.detail.title">Competition Player</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ competitionPlayer.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.competitionPlayer.preferredShirtNumber">Preferred Shirt Number</span></dt>
+        <dd>
+          <span>{{ competitionPlayer.preferredShirtNumber }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.competitionPlayer.player">Player</span></dt>
+        <dd>
+          <div *ngIf="competitionPlayer.player">
+            <a [routerLink]="['/player', competitionPlayer.player?.id, 'view']">{{ competitionPlayer.player?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.competitionPlayer.competition">Competition</span></dt>
+        <dd>
+          <div *ngIf="competitionPlayer.competition">
+            <a [routerLink]="['/competition', competitionPlayer.competition?.id, 'view']">{{
+              competitionPlayer.competition?.graphicsName
+            }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.competitionPlayer.preferredPosition">Preferred Position</span></dt>
+        <dd>
+          <span *ngFor="let preferredPosition of competitionPlayer.preferredPositions; let last = last">
+            <a [routerLink]="['/position', preferredPosition?.id, 'view']">{{ preferredPosition.abb }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/competition-player', competitionPlayer.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

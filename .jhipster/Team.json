@@ -1,0 +1,64 @@
+{
+  "applications": "*",
+  "changelogDate": "20221123195913",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "team",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "graphicsName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "abb",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "badge",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    },
+    {
+      "fieldName": "monocBadge",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "any"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Team",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "formation",
+      "otherEntityRelationshipName": "team",
+      "relationshipName": "preferredFormation",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "graphicsName",
+      "otherEntityName": "stadium",
+      "otherEntityRelationshipName": "team",
+      "ownerSide": true,
+      "relationshipName": "stadium",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "competition",
+      "otherEntityRelationshipName": "team",
+      "ownerSide": false,
+      "relationshipName": "competition",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

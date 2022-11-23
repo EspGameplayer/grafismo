@@ -1,0 +1,116 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-shirt-heading" data-cy="ShirtCreateUpdateHeading" jhiTranslate="grafismoApp.shirt.home.createOrEditLabel">
+        Create or edit a Shirt
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.shirt.colour1" for="field_colour1">Colour 1</label>
+          <input type="text" class="form-control" name="colour1" id="field_colour1" data-cy="colour1" formControlName="colour1" />
+          <div *ngIf="editForm.get('colour1')!.invalid && (editForm.get('colour1')!.dirty || editForm.get('colour1')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('colour1')?.errors?.pattern"
+              jhiTranslate="entity.validation.pattern"
+              [translateValues]="{ pattern: 'Colour 1' }"
+            >
+              This field should follow pattern for "Colour 1".
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.shirt.colour2" for="field_colour2">Colour 2</label>
+          <input type="text" class="form-control" name="colour2" id="field_colour2" data-cy="colour2" formControlName="colour2" />
+          <div *ngIf="editForm.get('colour2')!.invalid && (editForm.get('colour2')!.dirty || editForm.get('colour2')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('colour2')?.errors?.pattern"
+              jhiTranslate="entity.validation.pattern"
+              [translateValues]="{ pattern: 'Colour 2' }"
+            >
+              This field should follow pattern for "Colour 2".
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.shirt.type" for="field_type">Type</label>
+          <input type="number" class="form-control" name="type" id="field_type" data-cy="type" formControlName="type" />
+          <div *ngIf="editForm.get('type')!.invalid && (editForm.get('type')!.dirty || editForm.get('type')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('type')?.errors?.min"
+              jhiTranslate="entity.validation.min"
+              [translateValues]="{ min: 1 }"
+            >
+              This field should be at least 1.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('type')?.errors?.max"
+              jhiTranslate="entity.validation.max"
+              [translateValues]="{ max: 3 }"
+            >
+              This field cannot be more than 3.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('type')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.shirt.team" for="field_team">Team</label>
+          <select class="form-control" id="field_team" data-cy="team" name="team" formControlName="team">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="teamOption.id === editForm.get('team')!.value?.id ? editForm.get('team')!.value : teamOption"
+              *ngFor="let teamOption of teamsSharedCollection; trackBy: trackTeamById"
+            >
+              {{ teamOption.graphicsName }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.shirt.season" for="field_season">Season</label>
+          <select class="form-control" id="field_season" data-cy="season" name="season" formControlName="season">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="seasonOption.id === editForm.get('season')!.value?.id ? editForm.get('season')!.value : seasonOption"
+              *ngFor="let seasonOption of seasonsSharedCollection; trackBy: trackSeasonById"
+            >
+              {{ seasonOption.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

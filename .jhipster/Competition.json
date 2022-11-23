@@ -1,0 +1,80 @@
+{
+  "applications": "*",
+  "changelogDate": "20221123195933",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "competition",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "graphicsName",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "CompetitionType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "LEAGUE (Liga),CUP (Copa)"
+    },
+    {
+      "fieldName": "colour",
+      "fieldType": "String",
+      "fieldValidateRules": ["pattern"],
+      "fieldValidateRulesPattern": "^[0-9a-fA-F]{6}$|^$"
+    },
+    {
+      "fieldName": "suspensionYcMatches",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Competition",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "sponsor",
+      "otherEntityRelationshipName": "competition",
+      "relationshipName": "sponsor",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "sponsor",
+      "otherEntityRelationshipName": "competition",
+      "relationshipName": "motmSponsor",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "graphicsName",
+      "otherEntityName": "competition",
+      "otherEntityRelationshipName": "child",
+      "relationshipName": "parent",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "graphicsName",
+      "otherEntityName": "team",
+      "otherEntityRelationshipName": "competition",
+      "ownerSide": true,
+      "relationshipName": "team",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "competition",
+      "otherEntityRelationshipName": "parent",
+      "relationshipName": "child",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

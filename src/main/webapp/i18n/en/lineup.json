@@ -1,0 +1,26 @@
+{
+  "grafismoApp": {
+    "lineup": {
+      "home": {
+        "title": "Lineups",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Lineup",
+        "createOrEditLabel": "Create or edit a Lineup",
+        "notFound": "No Lineups found"
+      },
+      "created": "A new Lineup is created with identifier {{ param }}",
+      "updated": "A Lineup is updated with identifier {{ param }}",
+      "deleted": "A Lineup is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Lineup {{ id }}?"
+      },
+      "detail": {
+        "title": "Lineup"
+      },
+      "id": "ID",
+      "callup": "Callup",
+      "formation": "Formation",
+      "player": "Player"
+    }
+  }
+}

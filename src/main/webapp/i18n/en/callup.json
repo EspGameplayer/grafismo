@@ -1,0 +1,30 @@
+{
+  "grafismoApp": {
+    "callup": {
+      "home": {
+        "title": "Callups",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Callup",
+        "createOrEditLabel": "Create or edit a Callup",
+        "notFound": "No Callups found"
+      },
+      "created": "A new Callup is created with identifier {{ param }}",
+      "updated": "A Callup is updated with identifier {{ param }}",
+      "deleted": "A Callup is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Callup {{ id }}?"
+      },
+      "detail": {
+        "title": "Callup"
+      },
+      "id": "ID",
+      "captain": "Captain",
+      "dt": "Dt",
+      "dt2": "Dt 2",
+      "teamDelegate": "Team Delegate",
+      "player": "Player",
+      "homeMatch": "Home Match",
+      "awayMatch": "Away Match"
+    }
+  }
+}

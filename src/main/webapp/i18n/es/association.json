@@ -1,0 +1,24 @@
+{
+  "grafismoApp": {
+    "association": {
+      "home": {
+        "title": "Associations",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Association",
+        "createOrEditLabel": "Crear o editar Association",
+        "notFound": "Ningún Associations encontrado"
+      },
+      "created": "Un nuevo Association ha sido creado con el identificador {{ param }}",
+      "updated": "Un Association ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Association ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Association {{ id }}?"
+      },
+      "detail": {
+        "title": "Association"
+      },
+      "id": "ID",
+      "name": "Name"
+    }
+  }
+}

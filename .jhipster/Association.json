@@ -1,0 +1,21 @@
+{
+  "applications": "*",
+  "changelogDate": "20221123195919",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "association",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Association",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}

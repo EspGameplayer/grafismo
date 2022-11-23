@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="stadium">
+      <h2 data-cy="stadiumDetailsHeading"><span jhiTranslate="grafismoApp.stadium.detail.title">Stadium</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ stadium.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.stadium.name">Name</span></dt>
+        <dd>
+          <span>{{ stadium.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.stadium.graphicsName">Graphics Name</span></dt>
+        <dd>
+          <span>{{ stadium.graphicsName }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.stadium.location">Location</span></dt>
+        <dd>
+          <span>{{ stadium.location }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.stadium.capacity">Capacity</span></dt>
+        <dd>
+          <span>{{ stadium.capacity }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.stadium.fieldLength">Field Length</span></dt>
+        <dd>
+          <span>{{ stadium.fieldLength }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.stadium.fieldWidth">Field Width</span></dt>
+        <dd>
+          <span>{{ stadium.fieldWidth }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/stadium', stadium.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

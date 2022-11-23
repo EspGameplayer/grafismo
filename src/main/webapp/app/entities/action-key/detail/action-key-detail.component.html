@@ -1,0 +1,36 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="actionKey">
+      <h2 data-cy="actionKeyDetailsHeading"><span jhiTranslate="grafismoApp.actionKey.detail.title">Action Key</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ actionKey.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.actionKey.action">Action</span></dt>
+        <dd>
+          <span>{{ actionKey.action }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.actionKey.keys">Keys</span></dt>
+        <dd>
+          <span>{{ actionKey.keys }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/action-key', actionKey.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

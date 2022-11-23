@@ -1,0 +1,27 @@
+{
+  "grafismoApp": {
+    "injury": {
+      "home": {
+        "title": "Injuries",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Injury",
+        "createOrEditLabel": "Crear o editar Injury",
+        "notFound": "Ningún Injuries encontrado"
+      },
+      "created": "Un nuevo Injury ha sido creado con el identificador {{ param }}",
+      "updated": "Un Injury ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Injury ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Injury {{ id }}?"
+      },
+      "detail": {
+        "title": "Injury"
+      },
+      "id": "ID",
+      "moment": "Moment",
+      "estReturnDate": "Est Return Date",
+      "reason": "Reason",
+      "player": "Player"
+    }
+  }
+}

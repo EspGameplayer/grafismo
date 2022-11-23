@@ -1,0 +1,36 @@
+{
+  "grafismoApp": {
+    "match": {
+      "home": {
+        "title": "Matches",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Match",
+        "createOrEditLabel": "Create or edit a Match",
+        "notFound": "No Matches found"
+      },
+      "created": "A new Match is created with identifier {{ param }}",
+      "updated": "A Match is updated with identifier {{ param }}",
+      "deleted": "A Match is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Match {{ id }}?"
+      },
+      "detail": {
+        "title": "Match"
+      },
+      "id": "ID",
+      "moment": "Moment",
+      "attendance": "Attendance",
+      "motm": "Motm",
+      "homeCallup": "Home Callup",
+      "awayCallup": "Away Callup",
+      "homeTeam": "Home Team",
+      "awayTeam": "Away Team",
+      "stadium": "Stadium",
+      "matchDelegate": "Match Delegate",
+      "homeShirt": "Home Shirt",
+      "awayShirt": "Away Shirt",
+      "matchday": "Matchday",
+      "referee": "Referee"
+    }
+  }
+}

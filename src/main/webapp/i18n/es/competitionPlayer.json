@@ -1,0 +1,27 @@
+{
+  "grafismoApp": {
+    "competitionPlayer": {
+      "home": {
+        "title": "Competition Players",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Competition Player",
+        "createOrEditLabel": "Crear o editar Competition Player",
+        "notFound": "Ningún Competition Players encontrado"
+      },
+      "created": "Un nuevo Competition Player ha sido creado con el identificador {{ param }}",
+      "updated": "Un Competition Player ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Competition Player ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Competition Player {{ id }}?"
+      },
+      "detail": {
+        "title": "Competition Player"
+      },
+      "id": "ID",
+      "preferredShirtNumber": "Preferred Shirt Number",
+      "player": "Player",
+      "competition": "Competition",
+      "preferredPosition": "Preferred Position"
+    }
+  }
+}

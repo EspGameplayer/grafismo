@@ -1,0 +1,31 @@
+{
+  "grafismoApp": {
+    "matchPlayer": {
+      "home": {
+        "title": "Match Players",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Match Player",
+        "createOrEditLabel": "Create or edit a Match Player",
+        "notFound": "No Match Players found"
+      },
+      "created": "A new Match Player is created with identifier {{ param }}",
+      "updated": "A Match Player is updated with identifier {{ param }}",
+      "deleted": "A Match Player is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Match Player {{ id }}?"
+      },
+      "detail": {
+        "title": "Match Player"
+      },
+      "id": "ID",
+      "shirtNumber": "Shirt Number",
+      "isWarned": "Is Warned",
+      "player": "Player",
+      "position": "Position",
+      "motmMatch": "Motm Match",
+      "captainCallup": "Captain Callup",
+      "callup": "Callup",
+      "lineup": "Lineup"
+    }
+  }
+}

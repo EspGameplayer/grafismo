@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Competition.
+    -->
+    <changeSet id="20221123195933-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="sponsor_id"
+                                 baseTableName="competition"
+                                 constraintName="fk_competition__sponsor_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sponsor"/>
+
+        <addForeignKeyConstraint baseColumnNames="motm_sponsor_id"
+                                 baseTableName="competition"
+                                 constraintName="fk_competition__motm_sponsor_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sponsor"/>
+
+        <addForeignKeyConstraint baseColumnNames="parent_id"
+                                 baseTableName="competition"
+                                 constraintName="fk_competition__parent_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="competition"/>
+
+        <addForeignKeyConstraint baseColumnNames="competition_id"
+                                 baseTableName="rel_competition__team"
+                                 constraintName="fk_rel_competition__team__competition_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="competition"/>
+
+        <addForeignKeyConstraint baseColumnNames="team_id"
+                                 baseTableName="rel_competition__team"
+                                 constraintName="fk_rel_competition__team__team_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="team"/>
+    </changeSet>
+</databaseChangeLog>

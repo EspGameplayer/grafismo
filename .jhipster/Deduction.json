@@ -1,0 +1,47 @@
+{
+  "applications": "*",
+  "changelogDate": "20221123195935",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "deduction",
+  "fields": [
+    {
+      "fieldName": "points",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "1"
+    },
+    {
+      "fieldName": "moment",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "reason",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Deduction",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "graphicsName",
+      "otherEntityName": "team",
+      "otherEntityRelationshipName": "deduction",
+      "relationshipName": "team",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "graphicsName",
+      "otherEntityName": "competition",
+      "otherEntityRelationshipName": "deduction",
+      "relationshipName": "competition",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "serviceClass"
+}

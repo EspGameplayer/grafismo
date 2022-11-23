@@ -1,0 +1,28 @@
+{
+  "grafismoApp": {
+    "graphicElementPos": {
+      "home": {
+        "title": "Graphic Element Pos",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Graphic Element Pos",
+        "createOrEditLabel": "Create or edit a Graphic Element Pos",
+        "notFound": "No Graphic Element Pos found"
+      },
+      "created": "A new Graphic Element Pos is created with identifier {{ param }}",
+      "updated": "A Graphic Element Pos is updated with identifier {{ param }}",
+      "deleted": "A Graphic Element Pos is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Graphic Element Pos {{ id }}?"
+      },
+      "detail": {
+        "title": "Graphic Element Pos"
+      },
+      "id": "ID",
+      "name": "Name",
+      "x": "X",
+      "y": "Y",
+      "parent": "Parent",
+      "child": "Child"
+    }
+  }
+}

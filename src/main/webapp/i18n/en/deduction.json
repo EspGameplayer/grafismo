@@ -1,0 +1,28 @@
+{
+  "grafismoApp": {
+    "deduction": {
+      "home": {
+        "title": "Deductions",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Deduction",
+        "createOrEditLabel": "Create or edit a Deduction",
+        "notFound": "No Deductions found"
+      },
+      "created": "A new Deduction is created with identifier {{ param }}",
+      "updated": "A Deduction is updated with identifier {{ param }}",
+      "deleted": "A Deduction is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Deduction {{ id }}?"
+      },
+      "detail": {
+        "title": "Deduction"
+      },
+      "id": "ID",
+      "points": "Points",
+      "moment": "Moment",
+      "reason": "Reason",
+      "team": "Team",
+      "competition": "Competition"
+    }
+  }
+}

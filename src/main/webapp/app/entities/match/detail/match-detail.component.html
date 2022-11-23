@@ -1,0 +1,103 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="match">
+      <h2 data-cy="matchDetailsHeading"><span jhiTranslate="grafismoApp.match.detail.title">Match</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ match.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.match.moment">Moment</span></dt>
+        <dd>
+          <span>{{ match.moment | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.match.attendance">Attendance</span></dt>
+        <dd>
+          <span>{{ match.attendance }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.match.motm">Motm</span></dt>
+        <dd>
+          <div *ngIf="match.motm">
+            <a [routerLink]="['/match-player', match.motm?.id, 'view']">{{ match.motm?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.match.homeCallup">Home Callup</span></dt>
+        <dd>
+          <div *ngIf="match.homeCallup">
+            <a [routerLink]="['/callup', match.homeCallup?.id, 'view']">{{ match.homeCallup?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.match.awayCallup">Away Callup</span></dt>
+        <dd>
+          <div *ngIf="match.awayCallup">
+            <a [routerLink]="['/callup', match.awayCallup?.id, 'view']">{{ match.awayCallup?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.match.homeTeam">Home Team</span></dt>
+        <dd>
+          <div *ngIf="match.homeTeam">
+            <a [routerLink]="['/team', match.homeTeam?.id, 'view']">{{ match.homeTeam?.graphicsName }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.match.awayTeam">Away Team</span></dt>
+        <dd>
+          <div *ngIf="match.awayTeam">
+            <a [routerLink]="['/team', match.awayTeam?.id, 'view']">{{ match.awayTeam?.graphicsName }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.match.stadium">Stadium</span></dt>
+        <dd>
+          <div *ngIf="match.stadium">
+            <a [routerLink]="['/stadium', match.stadium?.id, 'view']">{{ match.stadium?.graphicsName }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.match.matchDelegate">Match Delegate</span></dt>
+        <dd>
+          <div *ngIf="match.matchDelegate">
+            <a [routerLink]="['/team-staff-member', match.matchDelegate?.id, 'view']">{{ match.matchDelegate?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.match.homeShirt">Home Shirt</span></dt>
+        <dd>
+          <div *ngIf="match.homeShirt">
+            <a [routerLink]="['/shirt', match.homeShirt?.id, 'view']">{{ match.homeShirt?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.match.awayShirt">Away Shirt</span></dt>
+        <dd>
+          <div *ngIf="match.awayShirt">
+            <a [routerLink]="['/shirt', match.awayShirt?.id, 'view']">{{ match.awayShirt?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.match.matchday">Matchday</span></dt>
+        <dd>
+          <div *ngIf="match.matchday">
+            <a [routerLink]="['/matchday', match.matchday?.id, 'view']">{{ match.matchday?.name }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.match.referee">Referee</span></dt>
+        <dd>
+          <span *ngFor="let referee of match.referees; let last = last">
+            <a [routerLink]="['/referee', referee?.id, 'view']">{{ referee.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/match', match.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

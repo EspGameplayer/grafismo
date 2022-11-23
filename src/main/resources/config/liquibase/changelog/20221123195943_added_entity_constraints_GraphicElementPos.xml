@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity GraphicElementPos.
+    -->
+    <changeSet id="20221123195943-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="parent_id"
+                                 baseTableName="graphic_element_pos"
+                                 constraintName="fk_graphic_element_pos__parent_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="graphic_element_pos"/>
+    </changeSet>
+</databaseChangeLog>

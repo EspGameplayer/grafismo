@@ -1,0 +1,25 @@
+{
+  "grafismoApp": {
+    "localAssociationProvince": {
+      "home": {
+        "title": "Local Association Provinces",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Local Association Province",
+        "createOrEditLabel": "Create or edit a Local Association Province",
+        "notFound": "No Local Association Provinces found"
+      },
+      "created": "A new Local Association Province is created with identifier {{ param }}",
+      "updated": "A Local Association Province is updated with identifier {{ param }}",
+      "deleted": "A Local Association Province is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Local Association Province {{ id }}?"
+      },
+      "detail": {
+        "title": "Local Association Province"
+      },
+      "id": "ID",
+      "name": "Name",
+      "association": "Association"
+    }
+  }
+}

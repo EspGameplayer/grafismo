@@ -1,0 +1,62 @@
+{
+  "applications": "*",
+  "changelogDate": "20221123195931",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "action",
+  "fields": [
+    {
+      "fieldName": "minute",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "second",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min", "max"],
+      "fieldValidateRulesMax": "59",
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "period",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min", "max"],
+      "fieldValidateRulesMax": "5",
+      "fieldValidateRulesMin": "1"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "ActionType",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "GOAL (Gol),YC (Amonestación),RC (Expulsión),SUB (Sustitución),PASS (Pase),CORNER (Saque de esquina),SHOT (Disparo),FK (Lanzamiento de falta),PK (Penalti),CLEARANCE (Despeje),TACKLE (Entrada),FOUL (Falta cometida),OFFSIDE (Fuera de juego),PENALTY (Penalti cometido),PERIOD_FINISH (Fin de periodo)"
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Action",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "matchStats",
+      "otherEntityRelationshipName": "action",
+      "relationshipName": "matchStats",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "player",
+      "otherEntityRelationshipName": "action",
+      "ownerSide": true,
+      "relationshipName": "player",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

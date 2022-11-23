@@ -1,0 +1,188 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-competition-heading"
+        data-cy="CompetitionCreateUpdateHeading"
+        jhiTranslate="grafismoApp.competition.home.createOrEditLabel"
+      >
+        Create or edit a Competition
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.competition.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.competition.graphicsName" for="field_graphicsName">Graphics Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="graphicsName"
+            id="field_graphicsName"
+            data-cy="graphicsName"
+            formControlName="graphicsName"
+          />
+          <div
+            *ngIf="editForm.get('graphicsName')!.invalid && (editForm.get('graphicsName')!.dirty || editForm.get('graphicsName')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('graphicsName')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.competition.type" for="field_type">Type</label>
+          <select class="form-control" name="type" formControlName="type" id="field_type" data-cy="type">
+            <option [ngValue]="null">{{ 'grafismoApp.CompetitionType.null' | translate }}</option>
+            <option *ngFor="let competitionType of competitionTypeValues" [value]="competitionType">
+              {{ 'grafismoApp.CompetitionType.' + competitionType | translate }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('type')!.invalid && (editForm.get('type')!.dirty || editForm.get('type')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('type')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.competition.colour" for="field_colour">Colour</label>
+          <input type="text" class="form-control" name="colour" id="field_colour" data-cy="colour" formControlName="colour" />
+          <div *ngIf="editForm.get('colour')!.invalid && (editForm.get('colour')!.dirty || editForm.get('colour')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('colour')?.errors?.pattern"
+              jhiTranslate="entity.validation.pattern"
+              [translateValues]="{ pattern: 'Colour' }"
+            >
+              This field should follow pattern for "Colour".
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.competition.suspensionYcMatches" for="field_suspensionYcMatches"
+            >Suspension Yc Matches</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="suspensionYcMatches"
+            id="field_suspensionYcMatches"
+            data-cy="suspensionYcMatches"
+            formControlName="suspensionYcMatches"
+          />
+          <div
+            *ngIf="
+              editForm.get('suspensionYcMatches')!.invalid &&
+              (editForm.get('suspensionYcMatches')!.dirty || editForm.get('suspensionYcMatches')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('suspensionYcMatches')?.errors?.min"
+              jhiTranslate="entity.validation.min"
+              [translateValues]="{ min: 0 }"
+            >
+              This field should be at least 0.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('suspensionYcMatches')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.competition.sponsor" for="field_sponsor">Sponsor</label>
+          <select class="form-control" id="field_sponsor" data-cy="sponsor" name="sponsor" formControlName="sponsor">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="sponsorOption.id === editForm.get('sponsor')!.value?.id ? editForm.get('sponsor')!.value : sponsorOption"
+              *ngFor="let sponsorOption of sponsorsSharedCollection; trackBy: trackSponsorById"
+            >
+              {{ sponsorOption.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.competition.motmSponsor" for="field_motmSponsor">Motm Sponsor</label>
+          <select class="form-control" id="field_motmSponsor" data-cy="motmSponsor" name="motmSponsor" formControlName="motmSponsor">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="sponsorOption.id === editForm.get('motmSponsor')!.value?.id ? editForm.get('motmSponsor')!.value : sponsorOption"
+              *ngFor="let sponsorOption of sponsorsSharedCollection; trackBy: trackSponsorById"
+            >
+              {{ sponsorOption.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.competition.parent" for="field_parent">Parent</label>
+          <select class="form-control" id="field_parent" data-cy="parent" name="parent" formControlName="parent">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="competitionOption.id === editForm.get('parent')!.value?.id ? editForm.get('parent')!.value : competitionOption"
+              *ngFor="let competitionOption of competitionsSharedCollection; trackBy: trackCompetitionById"
+            >
+              {{ competitionOption.graphicsName }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="grafismoApp.competition.team" for="field_teams">Team</label>
+          <select class="form-control" id="field_teams" data-cy="team" multiple name="teams" formControlName="teams">
+            <option
+              [ngValue]="getSelectedTeam(teamOption, editForm.get('teams')!.value)"
+              *ngFor="let teamOption of teamsSharedCollection; trackBy: trackTeamById"
+            >
+              {{ teamOption.graphicsName }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

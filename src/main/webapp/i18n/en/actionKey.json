@@ -1,0 +1,25 @@
+{
+  "grafismoApp": {
+    "actionKey": {
+      "home": {
+        "title": "Action Keys",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Action Key",
+        "createOrEditLabel": "Create or edit a Action Key",
+        "notFound": "No Action Keys found"
+      },
+      "created": "A new Action Key is created with identifier {{ param }}",
+      "updated": "A Action Key is updated with identifier {{ param }}",
+      "deleted": "A Action Key is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Action Key {{ id }}?"
+      },
+      "detail": {
+        "title": "Action Key"
+      },
+      "id": "ID",
+      "action": "Action",
+      "keys": "Keys"
+    }
+  }
+}

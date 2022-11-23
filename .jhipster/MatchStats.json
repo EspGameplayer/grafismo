@@ -1,0 +1,49 @@
+{
+  "applications": "*",
+  "changelogDate": "20221123195930",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "match_stats",
+  "fields": [
+    {
+      "fieldName": "homePossessionTime",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "awayPossessionTime",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "inContestPossessionTime",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "MatchStats",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "match",
+      "otherEntityRelationshipName": "matchStats",
+      "ownerSide": true,
+      "relationshipName": "match",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "action",
+      "otherEntityRelationshipName": "matchStats",
+      "relationshipName": "action",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

@@ -1,0 +1,26 @@
+{
+  "grafismoApp": {
+    "referee": {
+      "home": {
+        "title": "Referees",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Referee",
+        "createOrEditLabel": "Crear o editar Referee",
+        "notFound": "Ningún Referees encontrado"
+      },
+      "created": "Un nuevo Referee ha sido creado con el identificador {{ param }}",
+      "updated": "Un Referee ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Referee ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Referee {{ id }}?"
+      },
+      "detail": {
+        "title": "Referee"
+      },
+      "id": "ID",
+      "person": "Person",
+      "association": "Association",
+      "match": "Match"
+    }
+  }
+}

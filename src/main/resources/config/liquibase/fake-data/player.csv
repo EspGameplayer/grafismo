@@ -1,0 +1,11 @@
+id;stronger_foot;height;weight;photo;photo_content_type;person_id
+1;L;56228;41564;../fake-data/blob/hipster.png;image/png;1
+2;L;49463;53944;../fake-data/blob/hipster.png;image/png;2
+3;R;5453;8488;../fake-data/blob/hipster.png;image/png;3
+4;L;82224;96234;../fake-data/blob/hipster.png;image/png;4
+5;R;39196;58342;../fake-data/blob/hipster.png;image/png;5
+6;R;33167;87147;../fake-data/blob/hipster.png;image/png;6
+7;L;46435;41149;../fake-data/blob/hipster.png;image/png;7
+8;L;22457;80150;../fake-data/blob/hipster.png;image/png;8
+9;L;2437;71733;../fake-data/blob/hipster.png;image/png;9
+10;L;50139;1297;../fake-data/blob/hipster.png;image/png;10

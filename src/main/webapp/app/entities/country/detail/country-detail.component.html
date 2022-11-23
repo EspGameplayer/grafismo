@@ -1,0 +1,43 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="country">
+      <h2 data-cy="countryDetailsHeading"><span jhiTranslate="grafismoApp.country.detail.title">Country</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ country.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.country.name">Name</span></dt>
+        <dd>
+          <span>{{ country.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.country.abb">Abb</span></dt>
+        <dd>
+          <span>{{ country.abb }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.country.flag">Flag</span></dt>
+        <dd>
+          <div *ngIf="country.flag">
+            <a (click)="openFile(country.flag, country.flagContentType)" jhiTranslate="entity.action.open">open</a>
+            {{ country.flagContentType }}, {{ byteSize(country.flag) }}
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/country', country.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

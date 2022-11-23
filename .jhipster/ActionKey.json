@@ -1,0 +1,24 @@
+{
+  "applications": "*",
+  "changelogDate": "20221123195940",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "action_key",
+  "fields": [
+    {
+      "fieldName": "action",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "keys",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "ActionKey",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceClass"
+}

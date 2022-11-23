@@ -1,0 +1,28 @@
+{
+  "grafismoApp": {
+    "graphicElementPos": {
+      "home": {
+        "title": "Graphic Element Pos",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Graphic Element Pos",
+        "createOrEditLabel": "Crear o editar Graphic Element Pos",
+        "notFound": "Ningún Graphic Element Pos encontrado"
+      },
+      "created": "Un nuevo Graphic Element Pos ha sido creado con el identificador {{ param }}",
+      "updated": "Un Graphic Element Pos ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Graphic Element Pos ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Graphic Element Pos {{ id }}?"
+      },
+      "detail": {
+        "title": "Graphic Element Pos"
+      },
+      "id": "ID",
+      "name": "Name",
+      "x": "X",
+      "y": "Y",
+      "parent": "Parent",
+      "child": "Child"
+    }
+  }
+}

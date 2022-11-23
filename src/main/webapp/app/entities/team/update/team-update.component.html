@@ -1,0 +1,197 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-team-heading" data-cy="TeamCreateUpdateHeading" jhiTranslate="grafismoApp.team.home.createOrEditLabel">
+        Create or edit a Team
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.team.name" for="field_name">Name</label>
+          <input type="text" class="form-control" name="name" id="field_name" data-cy="name" formControlName="name" />
+          <div *ngIf="editForm.get('name')!.invalid && (editForm.get('name')!.dirty || editForm.get('name')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('name')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.team.graphicsName" for="field_graphicsName">Graphics Name</label>
+          <input
+            type="text"
+            class="form-control"
+            name="graphicsName"
+            id="field_graphicsName"
+            data-cy="graphicsName"
+            formControlName="graphicsName"
+          />
+          <div
+            *ngIf="editForm.get('graphicsName')!.invalid && (editForm.get('graphicsName')!.dirty || editForm.get('graphicsName')!.touched)"
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('graphicsName')?.errors?.required"
+              jhiTranslate="entity.validation.required"
+            >
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.team.abb" for="field_abb">Abb</label>
+          <input type="text" class="form-control" name="abb" id="field_abb" data-cy="abb" formControlName="abb" />
+          <div *ngIf="editForm.get('abb')!.invalid && (editForm.get('abb')!.dirty || editForm.get('abb')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('abb')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.team.badge" for="field_badge">Badge</label>
+          <div>
+            <div *ngIf="editForm.get('badge')!.value" class="form-text text-danger clearfix">
+              <a
+                class="pull-start"
+                (click)="openFile(editForm.get('badge')!.value, editForm.get('badgeContentType')!.value)"
+                jhiTranslate="entity.action.open"
+                >open</a
+              ><br />
+              <span class="pull-start">{{ editForm.get('badgeContentType')!.value }}, {{ byteSize(editForm.get('badge')!.value) }}</span>
+              <button
+                type="button"
+                (click)="editForm.patchValue({ badge: null }); editForm.patchValue({ badgeContentType: null })"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_badge"
+              data-cy="badge"
+              (change)="setFileData($event, 'badge', false)"
+              jhiTranslate="entity.action.addblob"
+            />
+          </div>
+          <input type="hidden" class="form-control" name="badge" id="field_badge" data-cy="badge" formControlName="badge" />
+          <input
+            type="hidden"
+            class="form-control"
+            name="badgeContentType"
+            id="field_badgeContentType"
+            formControlName="badgeContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.team.monocBadge" for="field_monocBadge">Monoc Badge</label>
+          <div>
+            <div *ngIf="editForm.get('monocBadge')!.value" class="form-text text-danger clearfix">
+              <a
+                class="pull-start"
+                (click)="openFile(editForm.get('monocBadge')!.value, editForm.get('monocBadgeContentType')!.value)"
+                jhiTranslate="entity.action.open"
+                >open</a
+              ><br />
+              <span class="pull-start"
+                >{{ editForm.get('monocBadgeContentType')!.value }}, {{ byteSize(editForm.get('monocBadge')!.value) }}</span
+              >
+              <button
+                type="button"
+                (click)="editForm.patchValue({ monocBadge: null }); editForm.patchValue({ monocBadgeContentType: null })"
+                class="btn btn-secondary btn-xs pull-end"
+              >
+                <fa-icon icon="times"></fa-icon>
+              </button>
+            </div>
+            <input
+              type="file"
+              id="file_monocBadge"
+              data-cy="monocBadge"
+              (change)="setFileData($event, 'monocBadge', false)"
+              jhiTranslate="entity.action.addblob"
+            />
+          </div>
+          <input
+            type="hidden"
+            class="form-control"
+            name="monocBadge"
+            id="field_monocBadge"
+            data-cy="monocBadge"
+            formControlName="monocBadge"
+          />
+          <input
+            type="hidden"
+            class="form-control"
+            name="monocBadgeContentType"
+            id="field_monocBadgeContentType"
+            formControlName="monocBadgeContentType"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.team.preferredFormation" for="field_preferredFormation"
+            >Preferred Formation</label
+          >
+          <select
+            class="form-control"
+            id="field_preferredFormation"
+            data-cy="preferredFormation"
+            name="preferredFormation"
+            formControlName="preferredFormation"
+          >
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                formationOption.id === editForm.get('preferredFormation')!.value?.id
+                  ? editForm.get('preferredFormation')!.value
+                  : formationOption
+              "
+              *ngFor="let formationOption of formationsSharedCollection; trackBy: trackFormationById"
+            >
+              {{ formationOption.name }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="grafismoApp.team.stadium" for="field_stadiums">Stadium</label>
+          <select class="form-control" id="field_stadiums" data-cy="stadium" multiple name="stadiums" formControlName="stadiums">
+            <option
+              [ngValue]="getSelectedStadium(stadiumOption, editForm.get('stadiums')!.value)"
+              *ngFor="let stadiumOption of stadiumsSharedCollection; trackBy: trackStadiumById"
+            >
+              {{ stadiumOption.graphicsName }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

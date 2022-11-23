@@ -1,0 +1,64 @@
+{
+  "applications": "*",
+  "changelogDate": "20221123195926",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "callup",
+  "fields": [],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Callup",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "matchPlayer",
+      "otherEntityRelationshipName": "captainCallup",
+      "ownerSide": true,
+      "relationshipName": "captain",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "teamStaffMember",
+      "otherEntityRelationshipName": "callup",
+      "relationshipName": "dt",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "teamStaffMember",
+      "otherEntityRelationshipName": "callup",
+      "relationshipName": "dt2",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "teamStaffMember",
+      "otherEntityRelationshipName": "callup",
+      "relationshipName": "teamDelegate",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "matchPlayer",
+      "otherEntityRelationshipName": "callup",
+      "ownerSide": true,
+      "relationshipName": "player",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "match",
+      "otherEntityRelationshipName": "homeCallup",
+      "ownerSide": false,
+      "relationshipName": "homeMatch",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "match",
+      "otherEntityRelationshipName": "awayCallup",
+      "ownerSide": false,
+      "relationshipName": "awayMatch",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "serviceClass"
+}

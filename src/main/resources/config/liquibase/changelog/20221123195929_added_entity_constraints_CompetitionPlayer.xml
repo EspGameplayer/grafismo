@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity CompetitionPlayer.
+    -->
+    <changeSet id="20221123195929-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="player_id"
+                                 baseTableName="competition_player"
+                                 constraintName="fk_competition_player__player_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="player"/>
+
+        <addForeignKeyConstraint baseColumnNames="competition_id"
+                                 baseTableName="competition_player"
+                                 constraintName="fk_competition_player__competition_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="competition"/>
+
+        <addForeignKeyConstraint baseColumnNames="competition_player_id"
+                                 baseTableName="rel_competition_player__preferred_position"
+                                 constraintName="fk_rel_competition_player__pref__competition_player_f0_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="competition_player"/>
+
+        <addForeignKeyConstraint baseColumnNames="preferred_position_id"
+                                 baseTableName="rel_competition_player__preferred_position"
+                                 constraintName="fk_rel_competition_player__pref__preferred_position_10_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="position"/>
+    </changeSet>
+</databaseChangeLog>

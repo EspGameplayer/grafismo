@@ -1,0 +1,28 @@
+{
+  "grafismoApp": {
+    "matchStats": {
+      "home": {
+        "title": "Match Stats",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Match Stats",
+        "createOrEditLabel": "Create or edit a Match Stats",
+        "notFound": "No Match Stats found"
+      },
+      "created": "A new Match Stats is created with identifier {{ param }}",
+      "updated": "A Match Stats is updated with identifier {{ param }}",
+      "deleted": "A Match Stats is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Match Stats {{ id }}?"
+      },
+      "detail": {
+        "title": "Match Stats"
+      },
+      "id": "ID",
+      "homePossessionTime": "Home Possession Time",
+      "awayPossessionTime": "Away Possession Time",
+      "inContestPossessionTime": "In Contest Possession Time",
+      "match": "Match",
+      "action": "Action"
+    }
+  }
+}

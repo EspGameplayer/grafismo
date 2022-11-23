@@ -1,0 +1,27 @@
+{
+  "grafismoApp": {
+    "systemConfiguration": {
+      "home": {
+        "title": "System Configurations",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new System Configuration",
+        "createOrEditLabel": "Create or edit a System Configuration",
+        "notFound": "No System Configurations found"
+      },
+      "created": "A new System Configuration is created with identifier {{ param }}",
+      "updated": "A System Configuration is updated with identifier {{ param }}",
+      "deleted": "A System Configuration is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete System Configuration {{ id }}?"
+      },
+      "detail": {
+        "title": "System Configuration"
+      },
+      "id": "ID",
+      "currentPeriodStartMoment": "Current Period Start Moment",
+      "currentSeason": "Current Season",
+      "defaultSponsorLogo": "Default Sponsor Logo",
+      "defaultMotmSponsorLogo": "Default Motm Sponsor Logo"
+    }
+  }
+}

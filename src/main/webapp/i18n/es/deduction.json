@@ -1,0 +1,28 @@
+{
+  "grafismoApp": {
+    "deduction": {
+      "home": {
+        "title": "Deductions",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Deduction",
+        "createOrEditLabel": "Crear o editar Deduction",
+        "notFound": "Ningún Deductions encontrado"
+      },
+      "created": "Un nuevo Deduction ha sido creado con el identificador {{ param }}",
+      "updated": "Un Deduction ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Deduction ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Deduction {{ id }}?"
+      },
+      "detail": {
+        "title": "Deduction"
+      },
+      "id": "ID",
+      "points": "Points",
+      "moment": "Moment",
+      "reason": "Reason",
+      "team": "Team",
+      "competition": "Competition"
+    }
+  }
+}

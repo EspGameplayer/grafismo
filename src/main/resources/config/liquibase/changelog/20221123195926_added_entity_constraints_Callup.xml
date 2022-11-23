@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Callup.
+    -->
+    <changeSet id="20221123195926-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="captain_id"
+                                 baseTableName="callup"
+                                 constraintName="fk_callup__captain_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="match_player"/>
+
+        <addForeignKeyConstraint baseColumnNames="dt_id"
+                                 baseTableName="callup"
+                                 constraintName="fk_callup__dt_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="team_staff_member"/>
+
+        <addForeignKeyConstraint baseColumnNames="dt2_id"
+                                 baseTableName="callup"
+                                 constraintName="fk_callup__dt2_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="team_staff_member"/>
+
+        <addForeignKeyConstraint baseColumnNames="team_delegate_id"
+                                 baseTableName="callup"
+                                 constraintName="fk_callup__team_delegate_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="team_staff_member"/>
+
+        <addForeignKeyConstraint baseColumnNames="callup_id"
+                                 baseTableName="rel_callup__player"
+                                 constraintName="fk_rel_callup__player__callup_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="callup"/>
+
+        <addForeignKeyConstraint baseColumnNames="player_id"
+                                 baseTableName="rel_callup__player"
+                                 constraintName="fk_rel_callup__player__player_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="match_player"/>
+    </changeSet>
+</databaseChangeLog>

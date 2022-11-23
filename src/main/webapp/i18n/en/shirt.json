@@ -1,0 +1,28 @@
+{
+  "grafismoApp": {
+    "shirt": {
+      "home": {
+        "title": "Shirts",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Shirt",
+        "createOrEditLabel": "Create or edit a Shirt",
+        "notFound": "No Shirts found"
+      },
+      "created": "A new Shirt is created with identifier {{ param }}",
+      "updated": "A Shirt is updated with identifier {{ param }}",
+      "deleted": "A Shirt is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Shirt {{ id }}?"
+      },
+      "detail": {
+        "title": "Shirt"
+      },
+      "id": "ID",
+      "colour1": "Colour 1",
+      "colour2": "Colour 2",
+      "type": "Type",
+      "team": "Team",
+      "season": "Season"
+    }
+  }
+}

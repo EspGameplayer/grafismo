@@ -1,0 +1,38 @@
+{
+  "applications": "*",
+  "changelogDate": "20221123195927",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "lineup",
+  "fields": [],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Lineup",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "callup",
+      "otherEntityRelationshipName": "lineup",
+      "ownerSide": true,
+      "relationshipName": "callup",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "formation",
+      "otherEntityRelationshipName": "lineup",
+      "relationshipName": "formation",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "matchPlayer",
+      "otherEntityRelationshipName": "lineup",
+      "ownerSide": true,
+      "relationshipName": "player",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

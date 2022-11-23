@@ -1,0 +1,103 @@
+{
+  "applications": "*",
+  "changelogDate": "20221123195924",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "jhi_match",
+  "fields": [
+    {
+      "fieldName": "moment",
+      "fieldType": "Instant"
+    },
+    {
+      "fieldName": "attendance",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Match",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "matchPlayer",
+      "otherEntityRelationshipName": "motmMatch",
+      "ownerSide": true,
+      "relationshipName": "motm",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "callup",
+      "otherEntityRelationshipName": "homeMatch",
+      "ownerSide": true,
+      "relationshipName": "homeCallup",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "callup",
+      "otherEntityRelationshipName": "awayMatch",
+      "ownerSide": true,
+      "relationshipName": "awayCallup",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "graphicsName",
+      "otherEntityName": "team",
+      "otherEntityRelationshipName": "match",
+      "relationshipName": "homeTeam",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "graphicsName",
+      "otherEntityName": "team",
+      "otherEntityRelationshipName": "match",
+      "relationshipName": "awayTeam",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "graphicsName",
+      "otherEntityName": "stadium",
+      "otherEntityRelationshipName": "match",
+      "relationshipName": "stadium",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "teamStaffMember",
+      "otherEntityRelationshipName": "match",
+      "relationshipName": "matchDelegate",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "shirt",
+      "otherEntityRelationshipName": "match",
+      "relationshipName": "homeShirt",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "shirt",
+      "otherEntityRelationshipName": "match",
+      "relationshipName": "awayShirt",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "matchday",
+      "otherEntityRelationshipName": "match",
+      "relationshipName": "matchday",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "referee",
+      "otherEntityRelationshipName": "match",
+      "ownerSide": true,
+      "relationshipName": "referee",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

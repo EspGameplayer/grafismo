@@ -1,0 +1,47 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="lineup">
+      <h2 data-cy="lineupDetailsHeading"><span jhiTranslate="grafismoApp.lineup.detail.title">Lineup</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ lineup.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.lineup.callup">Callup</span></dt>
+        <dd>
+          <div *ngIf="lineup.callup">
+            <a [routerLink]="['/callup', lineup.callup?.id, 'view']">{{ lineup.callup?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.lineup.formation">Formation</span></dt>
+        <dd>
+          <div *ngIf="lineup.formation">
+            <a [routerLink]="['/formation', lineup.formation?.id, 'view']">{{ lineup.formation?.name }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.lineup.player">Player</span></dt>
+        <dd>
+          <span *ngFor="let player of lineup.players; let last = last">
+            <a [routerLink]="['/match-player', player?.id, 'view']">{{ player.id }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/lineup', lineup.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

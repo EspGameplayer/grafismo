@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="matchStats">
+      <h2 data-cy="matchStatsDetailsHeading"><span jhiTranslate="grafismoApp.matchStats.detail.title">Match Stats</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ matchStats.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.matchStats.homePossessionTime">Home Possession Time</span></dt>
+        <dd>
+          <span>{{ matchStats.homePossessionTime }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.matchStats.awayPossessionTime">Away Possession Time</span></dt>
+        <dd>
+          <span>{{ matchStats.awayPossessionTime }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.matchStats.inContestPossessionTime">In Contest Possession Time</span></dt>
+        <dd>
+          <span>{{ matchStats.inContestPossessionTime }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.matchStats.match">Match</span></dt>
+        <dd>
+          <div *ngIf="matchStats.match">
+            <a [routerLink]="['/match', matchStats.match?.id, 'view']">{{ matchStats.match?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/match-stats', matchStats.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="suspension">
+      <h2 data-cy="suspensionDetailsHeading"><span jhiTranslate="grafismoApp.suspension.detail.title">Suspension</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ suspension.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.suspension.matches">Matches</span></dt>
+        <dd>
+          <span>{{ suspension.matches }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.suspension.moment">Moment</span></dt>
+        <dd>
+          <span>{{ suspension.moment | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.suspension.reason">Reason</span></dt>
+        <dd>
+          <span>{{ suspension.reason }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.suspension.person">Person</span></dt>
+        <dd>
+          <div *ngIf="suspension.person">
+            <a [routerLink]="['/person', suspension.person?.id, 'view']">{{ suspension.person?.graphicsName }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.suspension.competition">Competition</span></dt>
+        <dd>
+          <div *ngIf="suspension.competition">
+            <a [routerLink]="['/competition', suspension.competition?.id, 'view']">{{ suspension.competition?.graphicsName }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/suspension', suspension.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

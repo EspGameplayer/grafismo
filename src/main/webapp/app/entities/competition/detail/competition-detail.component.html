@@ -1,0 +1,73 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="competition">
+      <h2 data-cy="competitionDetailsHeading"><span jhiTranslate="grafismoApp.competition.detail.title">Competition</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ competition.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.competition.name">Name</span></dt>
+        <dd>
+          <span>{{ competition.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.competition.graphicsName">Graphics Name</span></dt>
+        <dd>
+          <span>{{ competition.graphicsName }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.competition.type">Type</span></dt>
+        <dd>
+          <span jhiTranslate="{{ 'grafismoApp.CompetitionType.' + competition.type }}">{{ competition.type }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.competition.colour">Colour</span></dt>
+        <dd>
+          <span>{{ competition.colour }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.competition.suspensionYcMatches">Suspension Yc Matches</span></dt>
+        <dd>
+          <span>{{ competition.suspensionYcMatches }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.competition.sponsor">Sponsor</span></dt>
+        <dd>
+          <div *ngIf="competition.sponsor">
+            <a [routerLink]="['/sponsor', competition.sponsor?.id, 'view']">{{ competition.sponsor?.name }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.competition.motmSponsor">Motm Sponsor</span></dt>
+        <dd>
+          <div *ngIf="competition.motmSponsor">
+            <a [routerLink]="['/sponsor', competition.motmSponsor?.id, 'view']">{{ competition.motmSponsor?.name }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.competition.parent">Parent</span></dt>
+        <dd>
+          <div *ngIf="competition.parent">
+            <a [routerLink]="['/competition', competition.parent?.id, 'view']">{{ competition.parent?.graphicsName }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.competition.team">Team</span></dt>
+        <dd>
+          <span *ngFor="let team of competition.teams; let last = last">
+            <a [routerLink]="['/team', team?.id, 'view']">{{ team.graphicsName }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/competition', competition.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,160 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-match-stats-heading" data-cy="MatchStatsCreateUpdateHeading" jhiTranslate="grafismoApp.matchStats.home.createOrEditLabel">
+        Create or edit a Match Stats
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.matchStats.homePossessionTime" for="field_homePossessionTime"
+            >Home Possession Time</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="homePossessionTime"
+            id="field_homePossessionTime"
+            data-cy="homePossessionTime"
+            formControlName="homePossessionTime"
+          />
+          <div
+            *ngIf="
+              editForm.get('homePossessionTime')!.invalid &&
+              (editForm.get('homePossessionTime')!.dirty || editForm.get('homePossessionTime')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('homePossessionTime')?.errors?.min"
+              jhiTranslate="entity.validation.min"
+              [translateValues]="{ min: 0 }"
+            >
+              This field should be at least 0.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('homePossessionTime')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.matchStats.awayPossessionTime" for="field_awayPossessionTime"
+            >Away Possession Time</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="awayPossessionTime"
+            id="field_awayPossessionTime"
+            data-cy="awayPossessionTime"
+            formControlName="awayPossessionTime"
+          />
+          <div
+            *ngIf="
+              editForm.get('awayPossessionTime')!.invalid &&
+              (editForm.get('awayPossessionTime')!.dirty || editForm.get('awayPossessionTime')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('awayPossessionTime')?.errors?.min"
+              jhiTranslate="entity.validation.min"
+              [translateValues]="{ min: 0 }"
+            >
+              This field should be at least 0.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('awayPossessionTime')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.matchStats.inContestPossessionTime" for="field_inContestPossessionTime"
+            >In Contest Possession Time</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="inContestPossessionTime"
+            id="field_inContestPossessionTime"
+            data-cy="inContestPossessionTime"
+            formControlName="inContestPossessionTime"
+          />
+          <div
+            *ngIf="
+              editForm.get('inContestPossessionTime')!.invalid &&
+              (editForm.get('inContestPossessionTime')!.dirty || editForm.get('inContestPossessionTime')!.touched)
+            "
+          >
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('inContestPossessionTime')?.errors?.min"
+              jhiTranslate="entity.validation.min"
+              [translateValues]="{ min: 0 }"
+            >
+              This field should be at least 0.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('inContestPossessionTime')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.matchStats.match" for="field_match">Match</label>
+          <select class="form-control" id="field_match" data-cy="match" name="match" formControlName="match">
+            <option *ngIf="editForm.get(['match'])!.value == null" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="matchOption.id === editForm.get('match')!.value?.id ? editForm.get('match')!.value : matchOption"
+              *ngFor="let matchOption of matchesCollection; trackBy: trackMatchById"
+            >
+              {{ matchOption.id }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['match'])!.invalid && (editForm.get(['match'])!.dirty || editForm.get(['match'])!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get(['match'])?.errors?.required" jhiTranslate="entity.validation.required">
+            This field is required.
+          </small>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+{
+  "applications": "*",
+  "changelogDate": "20221123195934",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "matchday",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "graphicsName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "number",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Matchday",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "graphicsName",
+      "otherEntityName": "competition",
+      "otherEntityRelationshipName": "matchday",
+      "relationshipName": "competition",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Match.
+    -->
+    <changeSet id="20221123195924-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="motm_id"
+                                 baseTableName="jhi_match"
+                                 constraintName="fk_jhi_match__motm_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="match_player"/>
+
+        <addForeignKeyConstraint baseColumnNames="home_callup_id"
+                                 baseTableName="jhi_match"
+                                 constraintName="fk_jhi_match__home_callup_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="callup"/>
+
+        <addForeignKeyConstraint baseColumnNames="away_callup_id"
+                                 baseTableName="jhi_match"
+                                 constraintName="fk_jhi_match__away_callup_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="callup"/>
+
+        <addForeignKeyConstraint baseColumnNames="home_team_id"
+                                 baseTableName="jhi_match"
+                                 constraintName="fk_jhi_match__home_team_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="team"/>
+
+        <addForeignKeyConstraint baseColumnNames="away_team_id"
+                                 baseTableName="jhi_match"
+                                 constraintName="fk_jhi_match__away_team_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="team"/>
+
+        <addForeignKeyConstraint baseColumnNames="stadium_id"
+                                 baseTableName="jhi_match"
+                                 constraintName="fk_jhi_match__stadium_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="stadium"/>
+
+        <addForeignKeyConstraint baseColumnNames="match_delegate_id"
+                                 baseTableName="jhi_match"
+                                 constraintName="fk_jhi_match__match_delegate_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="team_staff_member"/>
+
+        <addForeignKeyConstraint baseColumnNames="home_shirt_id"
+                                 baseTableName="jhi_match"
+                                 constraintName="fk_jhi_match__home_shirt_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="shirt"/>
+
+        <addForeignKeyConstraint baseColumnNames="away_shirt_id"
+                                 baseTableName="jhi_match"
+                                 constraintName="fk_jhi_match__away_shirt_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="shirt"/>
+
+        <addForeignKeyConstraint baseColumnNames="matchday_id"
+                                 baseTableName="jhi_match"
+                                 constraintName="fk_jhi_match__matchday_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="matchday"/>
+
+        <addForeignKeyConstraint baseColumnNames="jhi_match_id"
+                                 baseTableName="rel_jhi_match__referee"
+                                 constraintName="fk_rel_jhi_match__referee__jhi_match_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="jhi_match"/>
+
+        <addForeignKeyConstraint baseColumnNames="referee_id"
+                                 baseTableName="rel_jhi_match__referee"
+                                 constraintName="fk_rel_jhi_match__referee__referee_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="referee"/>
+    </changeSet>
+</databaseChangeLog>

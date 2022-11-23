@@ -1,0 +1,56 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="systemConfiguration">
+      <h2 data-cy="systemConfigurationDetailsHeading">
+        <span jhiTranslate="grafismoApp.systemConfiguration.detail.title">System Configuration</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ systemConfiguration.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.systemConfiguration.currentPeriodStartMoment">Current Period Start Moment</span></dt>
+        <dd>
+          <span>{{ systemConfiguration.currentPeriodStartMoment | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.systemConfiguration.currentSeason">Current Season</span></dt>
+        <dd>
+          <div *ngIf="systemConfiguration.currentSeason">
+            <a [routerLink]="['/season', systemConfiguration.currentSeason?.id, 'view']">{{ systemConfiguration.currentSeason?.name }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.systemConfiguration.defaultSponsorLogo">Default Sponsor Logo</span></dt>
+        <dd>
+          <div *ngIf="systemConfiguration.defaultSponsorLogo">
+            <a [routerLink]="['/sponsor', systemConfiguration.defaultSponsorLogo?.id, 'view']">{{
+              systemConfiguration.defaultSponsorLogo?.name
+            }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.systemConfiguration.defaultMotmSponsorLogo">Default Motm Sponsor Logo</span></dt>
+        <dd>
+          <div *ngIf="systemConfiguration.defaultMotmSponsorLogo">
+            <a [routerLink]="['/sponsor', systemConfiguration.defaultMotmSponsorLogo?.id, 'view']">{{
+              systemConfiguration.defaultMotmSponsorLogo?.name
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/system-configuration', systemConfiguration.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

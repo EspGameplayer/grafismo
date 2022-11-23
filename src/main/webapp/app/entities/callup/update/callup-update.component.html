@@ -1,0 +1,102 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-callup-heading" data-cy="CallupCreateUpdateHeading" jhiTranslate="grafismoApp.callup.home.createOrEditLabel">
+        Create or edit a Callup
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.callup.captain" for="field_captain">Captain</label>
+          <select class="form-control" id="field_captain" data-cy="captain" name="captain" formControlName="captain">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="matchPlayerOption.id === editForm.get('captain')!.value?.id ? editForm.get('captain')!.value : matchPlayerOption"
+              *ngFor="let matchPlayerOption of captainsCollection; trackBy: trackMatchPlayerById"
+            >
+              {{ matchPlayerOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.callup.dt" for="field_dt">Dt</label>
+          <select class="form-control" id="field_dt" data-cy="dt" name="dt" formControlName="dt">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="teamStaffMemberOption.id === editForm.get('dt')!.value?.id ? editForm.get('dt')!.value : teamStaffMemberOption"
+              *ngFor="let teamStaffMemberOption of teamStaffMembersSharedCollection; trackBy: trackTeamStaffMemberById"
+            >
+              {{ teamStaffMemberOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.callup.dt2" for="field_dt2">Dt 2</label>
+          <select class="form-control" id="field_dt2" data-cy="dt2" name="dt2" formControlName="dt2">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="teamStaffMemberOption.id === editForm.get('dt2')!.value?.id ? editForm.get('dt2')!.value : teamStaffMemberOption"
+              *ngFor="let teamStaffMemberOption of teamStaffMembersSharedCollection; trackBy: trackTeamStaffMemberById"
+            >
+              {{ teamStaffMemberOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.callup.teamDelegate" for="field_teamDelegate">Team Delegate</label>
+          <select class="form-control" id="field_teamDelegate" data-cy="teamDelegate" name="teamDelegate" formControlName="teamDelegate">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                teamStaffMemberOption.id === editForm.get('teamDelegate')!.value?.id
+                  ? editForm.get('teamDelegate')!.value
+                  : teamStaffMemberOption
+              "
+              *ngFor="let teamStaffMemberOption of teamStaffMembersSharedCollection; trackBy: trackTeamStaffMemberById"
+            >
+              {{ teamStaffMemberOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="grafismoApp.callup.player" for="field_players">Player</label>
+          <select class="form-control" id="field_players" data-cy="player" multiple name="players" formControlName="players">
+            <option
+              [ngValue]="getSelectedMatchPlayer(matchPlayerOption, editForm.get('players')!.value)"
+              *ngFor="let matchPlayerOption of matchPlayersSharedCollection; trackBy: trackMatchPlayerById"
+            >
+              {{ matchPlayerOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

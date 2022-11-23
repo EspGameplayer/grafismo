@@ -1,0 +1,152 @@
+<div>
+  <h2 id="page-heading" data-cy="MatchHeading">
+    <span jhiTranslate="grafismoApp.match.home.title">Matches</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="grafismoApp.match.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-match"
+        [routerLink]="['/match/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="grafismoApp.match.home.createLabel"> Create a new Match </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="matches?.length === 0">
+    <span jhiTranslate="grafismoApp.match.home.notFound">No matches found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="matches && matches.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="reset()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="moment">
+            <span jhiTranslate="grafismoApp.match.moment">Moment</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="attendance">
+            <span jhiTranslate="grafismoApp.match.attendance">Attendance</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="motm.id"><span jhiTranslate="grafismoApp.match.motm">Motm</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="homeCallup.id">
+            <span jhiTranslate="grafismoApp.match.homeCallup">Home Callup</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="awayCallup.id">
+            <span jhiTranslate="grafismoApp.match.awayCallup">Away Callup</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="homeTeam.graphicsName">
+            <span jhiTranslate="grafismoApp.match.homeTeam">Home Team</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="awayTeam.graphicsName">
+            <span jhiTranslate="grafismoApp.match.awayTeam">Away Team</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="stadium.graphicsName">
+            <span jhiTranslate="grafismoApp.match.stadium">Stadium</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="matchDelegate.id">
+            <span jhiTranslate="grafismoApp.match.matchDelegate">Match Delegate</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="homeShirt.id">
+            <span jhiTranslate="grafismoApp.match.homeShirt">Home Shirt</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="awayShirt.id">
+            <span jhiTranslate="grafismoApp.match.awayShirt">Away Shirt</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="matchday.name">
+            <span jhiTranslate="grafismoApp.match.matchday">Matchday</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let match of matches; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/match', match.id, 'view']">{{ match.id }}</a>
+          </td>
+          <td>{{ match.moment | formatMediumDatetime }}</td>
+          <td>{{ match.attendance }}</td>
+          <td>
+            <div *ngIf="match.motm">
+              <a [routerLink]="['/match-player', match.motm?.id, 'view']">{{ match.motm?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="match.homeCallup">
+              <a [routerLink]="['/callup', match.homeCallup?.id, 'view']">{{ match.homeCallup?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="match.awayCallup">
+              <a [routerLink]="['/callup', match.awayCallup?.id, 'view']">{{ match.awayCallup?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="match.homeTeam">
+              <a [routerLink]="['/team', match.homeTeam?.id, 'view']">{{ match.homeTeam?.graphicsName }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="match.awayTeam">
+              <a [routerLink]="['/team', match.awayTeam?.id, 'view']">{{ match.awayTeam?.graphicsName }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="match.stadium">
+              <a [routerLink]="['/stadium', match.stadium?.id, 'view']">{{ match.stadium?.graphicsName }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="match.matchDelegate">
+              <a [routerLink]="['/team-staff-member', match.matchDelegate?.id, 'view']">{{ match.matchDelegate?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="match.homeShirt">
+              <a [routerLink]="['/shirt', match.homeShirt?.id, 'view']">{{ match.homeShirt?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="match.awayShirt">
+              <a [routerLink]="['/shirt', match.awayShirt?.id, 'view']">{{ match.awayShirt?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="match.matchday">
+              <a [routerLink]="['/matchday', match.matchday?.id, 'view']">{{ match.matchday?.name }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/match', match.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/match', match.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(match)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

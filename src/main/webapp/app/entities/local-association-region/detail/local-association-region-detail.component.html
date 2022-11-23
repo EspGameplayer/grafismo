@@ -1,0 +1,42 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="localAssociationRegion">
+      <h2 data-cy="localAssociationRegionDetailsHeading">
+        <span jhiTranslate="grafismoApp.localAssociationRegion.detail.title">Local Association Region</span>
+      </h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ localAssociationRegion.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.localAssociationRegion.name">Name</span></dt>
+        <dd>
+          <span>{{ localAssociationRegion.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.localAssociationRegion.association">Association</span></dt>
+        <dd>
+          <div *ngIf="localAssociationRegion.association">
+            <a [routerLink]="['/association', localAssociationRegion.association?.id, 'view']">{{
+              localAssociationRegion.association?.name
+            }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/local-association-region', localAssociationRegion.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+{
+  "grafismoApp": {
+    "matchday": {
+      "home": {
+        "title": "Matchdays",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Matchday",
+        "createOrEditLabel": "Crear o editar Matchday",
+        "notFound": "Ningún Matchdays encontrado"
+      },
+      "created": "Un nuevo Matchday ha sido creado con el identificador {{ param }}",
+      "updated": "Un Matchday ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Matchday ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Matchday {{ id }}?"
+      },
+      "detail": {
+        "title": "Matchday"
+      },
+      "id": "ID",
+      "name": "Name",
+      "graphicsName": "Graphics Name",
+      "number": "Number",
+      "competition": "Competition"
+    }
+  }
+}

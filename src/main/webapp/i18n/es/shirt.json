@@ -1,0 +1,28 @@
+{
+  "grafismoApp": {
+    "shirt": {
+      "home": {
+        "title": "Shirts",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Shirt",
+        "createOrEditLabel": "Crear o editar Shirt",
+        "notFound": "Ningún Shirts encontrado"
+      },
+      "created": "Un nuevo Shirt ha sido creado con el identificador {{ param }}",
+      "updated": "Un Shirt ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Shirt ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Shirt {{ id }}?"
+      },
+      "detail": {
+        "title": "Shirt"
+      },
+      "id": "ID",
+      "colour1": "Colour 1",
+      "colour2": "Colour 2",
+      "type": "Type",
+      "team": "Team",
+      "season": "Season"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "grafismoApp": {
+    "person": {
+      "home": {
+        "title": "People",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Person",
+        "createOrEditLabel": "Create or edit a Person",
+        "notFound": "No People found"
+      },
+      "created": "A new Person is created with identifier {{ param }}",
+      "updated": "A Person is updated with identifier {{ param }}",
+      "deleted": "A Person is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Person {{ id }}?"
+      },
+      "detail": {
+        "title": "Person"
+      },
+      "id": "ID",
+      "name": "Name",
+      "surname1": "Surname 1",
+      "surname2": "Surname 2",
+      "nickname": "Nickname",
+      "graphicsName": "Graphics Name",
+      "callname": "Callname",
+      "birthdate": "Birthdate",
+      "nationality": "Nationality"
+    }
+  }
+}

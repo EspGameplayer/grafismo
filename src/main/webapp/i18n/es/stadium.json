@@ -1,0 +1,30 @@
+{
+  "grafismoApp": {
+    "stadium": {
+      "home": {
+        "title": "Stadiums",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Stadium",
+        "createOrEditLabel": "Crear o editar Stadium",
+        "notFound": "Ningún Stadiums encontrado"
+      },
+      "created": "Un nuevo Stadium ha sido creado con el identificador {{ param }}",
+      "updated": "Un Stadium ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Stadium ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Stadium {{ id }}?"
+      },
+      "detail": {
+        "title": "Stadium"
+      },
+      "id": "ID",
+      "name": "Name",
+      "graphicsName": "Graphics Name",
+      "location": "Location",
+      "capacity": "Capacity",
+      "fieldLength": "Field Length",
+      "fieldWidth": "Field Width",
+      "team": "Team"
+    }
+  }
+}

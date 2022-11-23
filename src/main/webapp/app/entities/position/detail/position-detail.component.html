@@ -1,0 +1,43 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="position">
+      <h2 data-cy="positionDetailsHeading"><span jhiTranslate="grafismoApp.position.detail.title">Position</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ position.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.position.name">Name</span></dt>
+        <dd>
+          <span>{{ position.name }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.position.abb">Abb</span></dt>
+        <dd>
+          <span>{{ position.abb }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.position.parent">Parent</span></dt>
+        <dd>
+          <span *ngFor="let parent of position.parents; let last = last">
+            <a [routerLink]="['/position', parent?.id, 'view']">{{ parent.abb }}</a
+            >{{ last ? '' : ', ' }}
+          </span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/position', position.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

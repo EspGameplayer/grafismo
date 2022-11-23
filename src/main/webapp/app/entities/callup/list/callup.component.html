@@ -1,0 +1,94 @@
+<div>
+  <h2 id="page-heading" data-cy="CallupHeading">
+    <span jhiTranslate="grafismoApp.callup.home.title">Callups</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="grafismoApp.callup.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-callup"
+        [routerLink]="['/callup/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="grafismoApp.callup.home.createLabel"> Create a new Callup </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="callups?.length === 0">
+    <span jhiTranslate="grafismoApp.callup.home.notFound">No callups found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="callups && callups.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="reset()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="captain.id">
+            <span jhiTranslate="grafismoApp.callup.captain">Captain</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="dt.id"><span jhiTranslate="grafismoApp.callup.dt">Dt</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="dt2.id"><span jhiTranslate="grafismoApp.callup.dt2">Dt 2</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="teamDelegate.id">
+            <span jhiTranslate="grafismoApp.callup.teamDelegate">Team Delegate</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let callup of callups; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/callup', callup.id, 'view']">{{ callup.id }}</a>
+          </td>
+          <td>
+            <div *ngIf="callup.captain">
+              <a [routerLink]="['/match-player', callup.captain?.id, 'view']">{{ callup.captain?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="callup.dt">
+              <a [routerLink]="['/team-staff-member', callup.dt?.id, 'view']">{{ callup.dt?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="callup.dt2">
+              <a [routerLink]="['/team-staff-member', callup.dt2?.id, 'view']">{{ callup.dt2?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="callup.teamDelegate">
+              <a [routerLink]="['/team-staff-member', callup.teamDelegate?.id, 'view']">{{ callup.teamDelegate?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/callup', callup.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/callup', callup.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(callup)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

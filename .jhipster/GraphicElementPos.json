@@ -1,0 +1,43 @@
+{
+  "applications": "*",
+  "changelogDate": "20221123195943",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "graphic_element_pos",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "x",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "y",
+      "fieldType": "Double"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "GraphicElementPos",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "graphicElementPos",
+      "otherEntityRelationshipName": "child",
+      "relationshipName": "parent",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "graphicElementPos",
+      "otherEntityRelationshipName": "parent",
+      "relationshipName": "child",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

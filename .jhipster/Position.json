@@ -1,0 +1,57 @@
+{
+  "applications": "*",
+  "changelogDate": "20221123195941",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "position",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "abb",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Position",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "abb",
+      "otherEntityName": "position",
+      "otherEntityRelationshipName": "child",
+      "ownerSide": true,
+      "relationshipName": "parent",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "abb",
+      "otherEntityName": "position",
+      "otherEntityRelationshipName": "parent",
+      "ownerSide": false,
+      "relationshipName": "child",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "player",
+      "otherEntityRelationshipName": "position",
+      "ownerSide": false,
+      "relationshipName": "player",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "competitionPlayer",
+      "otherEntityRelationshipName": "preferredPosition",
+      "ownerSide": false,
+      "relationshipName": "competitionPlayer",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

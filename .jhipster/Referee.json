@@ -1,0 +1,39 @@
+{
+  "applications": "*",
+  "changelogDate": "20221123195917",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "referee",
+  "fields": [],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Referee",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "graphicsName",
+      "otherEntityName": "person",
+      "otherEntityRelationshipName": "referee",
+      "ownerSide": true,
+      "relationshipName": "person",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "localAssociationProvince",
+      "otherEntityRelationshipName": "referee",
+      "relationshipName": "association",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "match",
+      "otherEntityRelationshipName": "referee",
+      "ownerSide": false,
+      "relationshipName": "match",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

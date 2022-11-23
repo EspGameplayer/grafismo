@@ -1,0 +1,164 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-action-heading" data-cy="ActionCreateUpdateHeading" jhiTranslate="grafismoApp.action.home.createOrEditLabel">
+        Create or edit a Action
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.action.minute" for="field_minute">Minute</label>
+          <input type="number" class="form-control" name="minute" id="field_minute" data-cy="minute" formControlName="minute" />
+          <div *ngIf="editForm.get('minute')!.invalid && (editForm.get('minute')!.dirty || editForm.get('minute')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('minute')?.errors?.min"
+              jhiTranslate="entity.validation.min"
+              [translateValues]="{ min: 0 }"
+            >
+              This field should be at least 0.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('minute')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.action.second" for="field_second">Second</label>
+          <input type="number" class="form-control" name="second" id="field_second" data-cy="second" formControlName="second" />
+          <div *ngIf="editForm.get('second')!.invalid && (editForm.get('second')!.dirty || editForm.get('second')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('second')?.errors?.min"
+              jhiTranslate="entity.validation.min"
+              [translateValues]="{ min: 0 }"
+            >
+              This field should be at least 0.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('second')?.errors?.max"
+              jhiTranslate="entity.validation.max"
+              [translateValues]="{ max: 59 }"
+            >
+              This field cannot be more than 59.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('second')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.action.period" for="field_period">Period</label>
+          <input type="number" class="form-control" name="period" id="field_period" data-cy="period" formControlName="period" />
+          <div *ngIf="editForm.get('period')!.invalid && (editForm.get('period')!.dirty || editForm.get('period')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('period')?.errors?.min"
+              jhiTranslate="entity.validation.min"
+              [translateValues]="{ min: 1 }"
+            >
+              This field should be at least 1.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('period')?.errors?.max"
+              jhiTranslate="entity.validation.max"
+              [translateValues]="{ max: 5 }"
+            >
+              This field cannot be more than 5.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('period')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.action.type" for="field_type">Type</label>
+          <select class="form-control" name="type" formControlName="type" id="field_type" data-cy="type">
+            <option [ngValue]="null">{{ 'grafismoApp.ActionType.null' | translate }}</option>
+            <option *ngFor="let actionType of actionTypeValues" [value]="actionType">
+              {{ 'grafismoApp.ActionType.' + actionType | translate }}
+            </option>
+          </select>
+          <div *ngIf="editForm.get('type')!.invalid && (editForm.get('type')!.dirty || editForm.get('type')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('type')?.errors?.required" jhiTranslate="entity.validation.required">
+              This field is required.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.action.status" for="field_status">Status</label>
+          <input type="number" class="form-control" name="status" id="field_status" data-cy="status" formControlName="status" />
+          <div *ngIf="editForm.get('status')!.invalid && (editForm.get('status')!.dirty || editForm.get('status')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('status')?.errors?.min"
+              jhiTranslate="entity.validation.min"
+              [translateValues]="{ min: 0 }"
+            >
+              This field should be at least 0.
+            </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('status')?.errors?.number" jhiTranslate="entity.validation.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.action.matchStats" for="field_matchStats">Match Stats</label>
+          <select class="form-control" id="field_matchStats" data-cy="matchStats" name="matchStats" formControlName="matchStats">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="
+                matchStatsOption.id === editForm.get('matchStats')!.value?.id ? editForm.get('matchStats')!.value : matchStatsOption
+              "
+              *ngFor="let matchStatsOption of matchStatsSharedCollection; trackBy: trackMatchStatsById"
+            >
+              {{ matchStatsOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="row mb-3">
+          <label jhiTranslate="grafismoApp.action.player" for="field_players">Player</label>
+          <select class="form-control" id="field_players" data-cy="player" multiple name="players" formControlName="players">
+            <option
+              [ngValue]="getSelectedPlayer(playerOption, editForm.get('players')!.value)"
+              *ngFor="let playerOption of playersSharedCollection; trackBy: trackPlayerById"
+            >
+              {{ playerOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+{
+  "grafismoApp": {
+    "formation": {
+      "home": {
+        "title": "Formations",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Formation",
+        "createOrEditLabel": "Crear o editar Formation",
+        "notFound": "Ningún Formations encontrado"
+      },
+      "created": "Un nuevo Formation ha sido creado con el identificador {{ param }}",
+      "updated": "Un Formation ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Formation ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Formation {{ id }}?"
+      },
+      "detail": {
+        "title": "Formation"
+      },
+      "id": "ID",
+      "name": "Name",
+      "distribution": "Distribution"
+    }
+  }
+}

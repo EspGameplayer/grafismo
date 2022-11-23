@@ -1,0 +1,74 @@
+{
+  "applications": "*",
+  "changelogDate": "20221123195925",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "match_player",
+  "fields": [
+    {
+      "fieldName": "shirtNumber",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "isWarned",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min", "max"],
+      "fieldValidateRulesMax": "1",
+      "fieldValidateRulesMin": "0"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "MatchPlayer",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "player",
+      "otherEntityRelationshipName": "matchPlayer",
+      "relationshipName": "player",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "abb",
+      "otherEntityName": "position",
+      "otherEntityRelationshipName": "matchPlayer",
+      "relationshipName": "position",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "match",
+      "otherEntityRelationshipName": "motm",
+      "ownerSide": false,
+      "relationshipName": "motmMatch",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "callup",
+      "otherEntityRelationshipName": "captain",
+      "ownerSide": false,
+      "relationshipName": "captainCallup",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityName": "callup",
+      "otherEntityRelationshipName": "player",
+      "ownerSide": false,
+      "relationshipName": "callup",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "lineup",
+      "otherEntityRelationshipName": "player",
+      "ownerSide": false,
+      "relationshipName": "lineup",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

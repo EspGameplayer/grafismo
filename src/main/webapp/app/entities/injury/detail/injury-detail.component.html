@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="injury">
+      <h2 data-cy="injuryDetailsHeading"><span jhiTranslate="grafismoApp.injury.detail.title">Injury</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ injury.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.injury.moment">Moment</span></dt>
+        <dd>
+          <span>{{ injury.moment | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.injury.estReturnDate">Est Return Date</span></dt>
+        <dd>
+          <span>{{ injury.estReturnDate | formatMediumDate }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.injury.reason">Reason</span></dt>
+        <dd>
+          <span>{{ injury.reason }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.injury.player">Player</span></dt>
+        <dd>
+          <div *ngIf="injury.player">
+            <a [routerLink]="['/player', injury.player?.id, 'view']">{{ injury.player?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/injury', injury.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

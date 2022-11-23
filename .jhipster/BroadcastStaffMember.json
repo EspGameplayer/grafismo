@@ -1,0 +1,25 @@
+{
+  "applications": "*",
+  "changelogDate": "20221123195918",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "broadcast_staff_member",
+  "fields": [],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "BroadcastStaffMember",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "graphicsName",
+      "otherEntityName": "person",
+      "otherEntityRelationshipName": "broadcastStaffMember",
+      "ownerSide": true,
+      "relationshipName": "person",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    }
+  ],
+  "service": "serviceClass"
+}

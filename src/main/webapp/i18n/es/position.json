@@ -1,0 +1,29 @@
+{
+  "grafismoApp": {
+    "position": {
+      "home": {
+        "title": "Positions",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Position",
+        "createOrEditLabel": "Crear o editar Position",
+        "notFound": "Ningún Positions encontrado"
+      },
+      "created": "Un nuevo Position ha sido creado con el identificador {{ param }}",
+      "updated": "Un Position ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Position ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Position {{ id }}?"
+      },
+      "detail": {
+        "title": "Position"
+      },
+      "id": "ID",
+      "name": "Name",
+      "abb": "Abb",
+      "parent": "Parent",
+      "child": "Child",
+      "player": "Player",
+      "competitionPlayer": "Competition Player"
+    }
+  }
+}

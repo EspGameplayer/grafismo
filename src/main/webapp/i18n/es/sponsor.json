@@ -1,0 +1,25 @@
+{
+  "grafismoApp": {
+    "sponsor": {
+      "home": {
+        "title": "Sponsors",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Sponsor",
+        "createOrEditLabel": "Crear o editar Sponsor",
+        "notFound": "Ningún Sponsors encontrado"
+      },
+      "created": "Un nuevo Sponsor ha sido creado con el identificador {{ param }}",
+      "updated": "Un Sponsor ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Sponsor ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Sponsor {{ id }}?"
+      },
+      "detail": {
+        "title": "Sponsor"
+      },
+      "id": "ID",
+      "name": "Name",
+      "logo": "Logo"
+    }
+  }
+}

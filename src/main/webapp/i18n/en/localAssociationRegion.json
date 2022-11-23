@@ -1,0 +1,25 @@
+{
+  "grafismoApp": {
+    "localAssociationRegion": {
+      "home": {
+        "title": "Local Association Regions",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Local Association Region",
+        "createOrEditLabel": "Create or edit a Local Association Region",
+        "notFound": "No Local Association Regions found"
+      },
+      "created": "A new Local Association Region is created with identifier {{ param }}",
+      "updated": "A Local Association Region is updated with identifier {{ param }}",
+      "deleted": "A Local Association Region is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Local Association Region {{ id }}?"
+      },
+      "detail": {
+        "title": "Local Association Region"
+      },
+      "id": "ID",
+      "name": "Name",
+      "association": "Association"
+    }
+  }
+}

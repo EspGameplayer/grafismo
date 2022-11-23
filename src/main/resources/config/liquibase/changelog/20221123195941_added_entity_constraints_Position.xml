@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity Position.
+    -->
+    <changeSet id="20221123195941-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="position_id"
+                                 baseTableName="rel_position__parent"
+                                 constraintName="fk_rel_position__parent__position_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="position"/>
+
+        <addForeignKeyConstraint baseColumnNames="parent_id"
+                                 baseTableName="rel_position__parent"
+                                 constraintName="fk_rel_position__parent__parent_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="position"/>
+    </changeSet>
+</databaseChangeLog>

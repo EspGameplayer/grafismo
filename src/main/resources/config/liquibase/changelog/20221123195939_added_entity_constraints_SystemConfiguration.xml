@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <!--
+        Added the constraints for entity SystemConfiguration.
+    -->
+    <changeSet id="20221123195939-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="current_season_id"
+                                 baseTableName="system_configuration"
+                                 constraintName="fk_system_configuration__current_season_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="season"/>
+
+        <addForeignKeyConstraint baseColumnNames="default_sponsor_logo_id"
+                                 baseTableName="system_configuration"
+                                 constraintName="fk_system_configuration__default_sponsor_logo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sponsor"/>
+
+        <addForeignKeyConstraint baseColumnNames="default_motm_sponsor_logo_id"
+                                 baseTableName="system_configuration"
+                                 constraintName="fk_system_configuration__default_motm_sponsor_logo_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="sponsor"/>
+    </changeSet>
+</databaseChangeLog>

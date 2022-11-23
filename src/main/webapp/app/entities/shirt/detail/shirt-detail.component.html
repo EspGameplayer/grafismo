@@ -1,0 +1,52 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="shirt">
+      <h2 data-cy="shirtDetailsHeading"><span jhiTranslate="grafismoApp.shirt.detail.title">Shirt</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ shirt.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.shirt.colour1">Colour 1</span></dt>
+        <dd>
+          <span>{{ shirt.colour1 }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.shirt.colour2">Colour 2</span></dt>
+        <dd>
+          <span>{{ shirt.colour2 }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.shirt.type">Type</span></dt>
+        <dd>
+          <span>{{ shirt.type }}</span>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.shirt.team">Team</span></dt>
+        <dd>
+          <div *ngIf="shirt.team">
+            <a [routerLink]="['/team', shirt.team?.id, 'view']">{{ shirt.team?.graphicsName }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="grafismoApp.shirt.season">Season</span></dt>
+        <dd>
+          <div *ngIf="shirt.season">
+            <a [routerLink]="['/season', shirt.season?.id, 'view']">{{ shirt.season?.name }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/shirt', shirt.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

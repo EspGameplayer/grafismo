@@ -1,0 +1,92 @@
+<div>
+  <h2 id="page-heading" data-cy="ActionHeading">
+    <span jhiTranslate="grafismoApp.action.home.title">Actions</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="grafismoApp.action.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-action"
+        [routerLink]="['/action/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="grafismoApp.action.home.createLabel"> Create a new Action </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="actions?.length === 0">
+    <span jhiTranslate="grafismoApp.action.home.notFound">No actions found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="actions && actions.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="reset()">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="minute">
+            <span jhiTranslate="grafismoApp.action.minute">Minute</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="second">
+            <span jhiTranslate="grafismoApp.action.second">Second</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="period">
+            <span jhiTranslate="grafismoApp.action.period">Period</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="type"><span jhiTranslate="grafismoApp.action.type">Type</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="status">
+            <span jhiTranslate="grafismoApp.action.status">Status</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="matchStats.id">
+            <span jhiTranslate="grafismoApp.action.matchStats">Match Stats</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let action of actions; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/action', action.id, 'view']">{{ action.id }}</a>
+          </td>
+          <td>{{ action.minute }}</td>
+          <td>{{ action.second }}</td>
+          <td>{{ action.period }}</td>
+          <td jhiTranslate="{{ 'grafismoApp.ActionType.' + action.type }}">{{ action.type }}</td>
+          <td>{{ action.status }}</td>
+          <td>
+            <div *ngIf="action.matchStats">
+              <a [routerLink]="['/match-stats', action.matchStats?.id, 'view']">{{ action.matchStats?.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button type="submit" [routerLink]="['/action', action.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button type="submit" [routerLink]="['/action', action.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(action)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

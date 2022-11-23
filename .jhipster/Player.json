@@ -1,0 +1,70 @@
+{
+  "applications": "*",
+  "changelogDate": "20221123195915",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "player",
+  "fields": [
+    {
+      "fieldName": "strongerFoot",
+      "fieldType": "Foot",
+      "fieldValues": "R (Derecha),L (Izquierda)"
+    },
+    {
+      "fieldName": "height",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "weight",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0"
+    },
+    {
+      "fieldName": "photo",
+      "fieldType": "byte[]",
+      "fieldTypeBlobContent": "image"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Player",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "graphicsName",
+      "otherEntityName": "person",
+      "otherEntityRelationshipName": "player",
+      "ownerSide": true,
+      "relationshipName": "person",
+      "relationshipType": "one-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "graphicsName",
+      "otherEntityName": "team",
+      "otherEntityRelationshipName": "player",
+      "relationshipName": "team",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "abb",
+      "otherEntityName": "position",
+      "otherEntityRelationshipName": "player",
+      "ownerSide": true,
+      "relationshipName": "position",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "action",
+      "otherEntityRelationshipName": "player",
+      "ownerSide": false,
+      "relationshipName": "action",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}

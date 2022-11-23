@@ -1,0 +1,128 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2
+        id="jhi-match-player-heading"
+        data-cy="MatchPlayerCreateUpdateHeading"
+        jhiTranslate="grafismoApp.matchPlayer.home.createOrEditLabel"
+      >
+        Create or edit a Match Player
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.matchPlayer.shirtNumber" for="field_shirtNumber">Shirt Number</label>
+          <input
+            type="number"
+            class="form-control"
+            name="shirtNumber"
+            id="field_shirtNumber"
+            data-cy="shirtNumber"
+            formControlName="shirtNumber"
+          />
+          <div *ngIf="editForm.get('shirtNumber')!.invalid && (editForm.get('shirtNumber')!.dirty || editForm.get('shirtNumber')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('shirtNumber')?.errors?.min"
+              jhiTranslate="entity.validation.min"
+              [translateValues]="{ min: 0 }"
+            >
+              This field should be at least 0.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('shirtNumber')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.matchPlayer.isWarned" for="field_isWarned">Is Warned</label>
+          <input type="number" class="form-control" name="isWarned" id="field_isWarned" data-cy="isWarned" formControlName="isWarned" />
+          <div *ngIf="editForm.get('isWarned')!.invalid && (editForm.get('isWarned')!.dirty || editForm.get('isWarned')!.touched)">
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('isWarned')?.errors?.min"
+              jhiTranslate="entity.validation.min"
+              [translateValues]="{ min: 0 }"
+            >
+              This field should be at least 0.
+            </small>
+            <small
+              class="form-text text-danger"
+              *ngIf="editForm.get('isWarned')?.errors?.max"
+              jhiTranslate="entity.validation.max"
+              [translateValues]="{ max: 1 }"
+            >
+              This field cannot be more than 1.
+            </small>
+            <small
+              class="form-text text-danger"
+              [hidden]="!editForm.get('isWarned')?.errors?.number"
+              jhiTranslate="entity.validation.number"
+            >
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.matchPlayer.player" for="field_player">Player</label>
+          <select class="form-control" id="field_player" data-cy="player" name="player" formControlName="player">
+            <option *ngIf="!editForm.get('player')!.value" [ngValue]="null" selected></option>
+            <option
+              [ngValue]="playerOption.id === editForm.get('player')!.value?.id ? editForm.get('player')!.value : playerOption"
+              *ngFor="let playerOption of playersSharedCollection; trackBy: trackPlayerById"
+            >
+              {{ playerOption.id }}
+            </option>
+          </select>
+        </div>
+        <div *ngIf="editForm.get(['player'])!.invalid && (editForm.get(['player'])!.dirty || editForm.get(['player'])!.touched)">
+          <small class="form-text text-danger" *ngIf="editForm.get(['player'])?.errors?.required" jhiTranslate="entity.validation.required">
+            This field is required.
+          </small>
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="grafismoApp.matchPlayer.position" for="field_position">Position</label>
+          <select class="form-control" id="field_position" data-cy="position" name="position" formControlName="position">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="positionOption.id === editForm.get('position')!.value?.id ? editForm.get('position')!.value : positionOption"
+              *ngFor="let positionOption of positionsSharedCollection; trackBy: trackPositionById"
+            >
+              {{ positionOption.abb }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

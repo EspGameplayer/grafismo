@@ -1,0 +1,50 @@
+{
+  "applications": "*",
+  "changelogDate": "20221123195923",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "shirt",
+  "fields": [
+    {
+      "fieldName": "colour1",
+      "fieldType": "String",
+      "fieldValidateRules": ["pattern"],
+      "fieldValidateRulesPattern": "^[0-9a-f]{6}$|^$"
+    },
+    {
+      "fieldName": "colour2",
+      "fieldType": "String",
+      "fieldValidateRules": ["pattern"],
+      "fieldValidateRulesPattern": "^[0-9a-f]{6}$|^$"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min", "max"],
+      "fieldValidateRulesMax": "3",
+      "fieldValidateRulesMin": "1"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Shirt",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "graphicsName",
+      "otherEntityName": "team",
+      "otherEntityRelationshipName": "shirt",
+      "relationshipName": "team",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "season",
+      "otherEntityRelationshipName": "shirt",
+      "relationshipName": "season",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

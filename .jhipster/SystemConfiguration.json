@@ -1,0 +1,45 @@
+{
+  "applications": "*",
+  "changelogDate": "20221123195939",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "system_configuration",
+  "fields": [
+    {
+      "fieldName": "currentPeriodStartMoment",
+      "fieldType": "Instant"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "SystemConfiguration",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "season",
+      "otherEntityRelationshipName": "systemConfiguration",
+      "ownerSide": true,
+      "relationshipName": "currentSeason",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "sponsor",
+      "otherEntityRelationshipName": "systemConfiguration",
+      "ownerSide": true,
+      "relationshipName": "defaultSponsorLogo",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "name",
+      "otherEntityName": "sponsor",
+      "otherEntityRelationshipName": "systemConfiguration",
+      "ownerSide": true,
+      "relationshipName": "defaultMotmSponsorLogo",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

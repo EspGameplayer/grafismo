@@ -1,0 +1,26 @@
+{
+  "grafismoApp": {
+    "teamStaffMember": {
+      "home": {
+        "title": "Team Staff Members",
+        "refreshListLabel": "Refrescar lista",
+        "createLabel": "Crear nuevo Team Staff Member",
+        "createOrEditLabel": "Crear o editar Team Staff Member",
+        "notFound": "Ningún Team Staff Members encontrado"
+      },
+      "created": "Un nuevo Team Staff Member ha sido creado con el identificador {{ param }}",
+      "updated": "Un Team Staff Member ha sido actualizado con el identificador {{ param }}",
+      "deleted": "Un Team Staff Member ha sido eliminado con el identificador {{ param }}",
+      "delete": {
+        "question": "¿Seguro que quiere eliminar Team Staff Member {{ id }}?"
+      },
+      "detail": {
+        "title": "Team Staff Member"
+      },
+      "id": "ID",
+      "role": "Role",
+      "person": "Person",
+      "team": "Team"
+    }
+  }
+}

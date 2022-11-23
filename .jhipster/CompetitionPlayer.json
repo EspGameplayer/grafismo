@@ -1,0 +1,46 @@
+{
+  "applications": "*",
+  "changelogDate": "20221123195929",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "competition_player",
+  "fields": [
+    {
+      "fieldName": "preferredShirtNumber",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["min"],
+      "fieldValidateRulesMin": "0"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "CompetitionPlayer",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "player",
+      "otherEntityRelationshipName": "competitionPlayer",
+      "relationshipName": "player",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "graphicsName",
+      "otherEntityName": "competition",
+      "otherEntityRelationshipName": "competitionPlayer",
+      "relationshipName": "competition",
+      "relationshipType": "many-to-one",
+      "relationshipValidateRules": "required"
+    },
+    {
+      "otherEntityField": "abb",
+      "otherEntityName": "position",
+      "otherEntityRelationshipName": "competitionPlayer",
+      "ownerSide": true,
+      "relationshipName": "preferredPosition",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceClass"
+}
