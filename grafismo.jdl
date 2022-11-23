@@ -1,0 +1,287 @@
+entity Team {
+	name String required
+    graphicsName String required
+    abb String required
+    badge Blob
+    monocBadge Blob
+}
+
+entity Person {
+	name String
+    surname1 String
+    surname2 String
+    nickname String
+    graphicsName String required
+    callname String
+    birthdate LocalDate
+}
+
+entity Player {
+    strongerFoot Foot
+    height Integer min(0)
+    weight Integer min(0)
+    photo ImageBlob
+}
+
+entity TeamStaffMember {
+	role StaffMemberRole
+}
+
+entity Referee
+
+entity BroadcastStaffMember
+
+entity Association {
+	name String required
+}
+
+entity LocalAssociationRegion {
+	name String required
+}
+
+entity LocalAssociationProvince {
+	name String required
+}
+
+entity Stadium {
+	name String
+    graphicsName String required
+    location String
+    capacity Integer min(0)
+    fieldLength Integer min(0)
+    fieldWidth Integer min(0)
+}
+
+entity Shirt {
+	colour1 String pattern(/^[0-9a-f]{6}$|^$/)
+	colour2 String pattern(/^[0-9a-f]{6}$|^$/)
+	type Integer min(1) max(3)
+}
+
+entity Match {
+	moment Instant
+    attendance Integer min(0)
+}
+
+entity MatchPlayer {
+	shirtNumber Integer min(0)
+    isWarned Integer min(0) max(1)
+}
+
+entity Callup
+
+entity Lineup
+
+entity Formation {
+	name String required
+	distribution String
+}
+
+entity CompetitionPlayer {
+	preferredShirtNumber Integer min(0)
+}
+
+entity MatchStats {
+	homePossessionTime Integer min(0)
+    awayPossessionTime Integer min(0)
+    inContestPossessionTime Integer min(0)
+}
+
+entity Action {
+	minute Integer min(0)
+    second Integer min(0) max(59)
+    period Integer min(1) max(5)
+    type ActionType required
+    status Integer min(0)
+}
+
+entity Sponsor {
+	name String required
+	logo Blob
+}
+
+entity Competition {
+	name String required
+	graphicsName String required
+    type CompetitionType required
+    colour String pattern(/^[0-9a-fA-F]{6}$|^$/)
+    suspensionYcMatches Integer min(0)
+}
+
+entity Matchday {
+	name String required
+	graphicsName String
+    number Integer min(0)
+}
+
+entity Deduction {
+	points Integer min(1)
+	moment Instant
+	reason String
+}
+
+entity Suspension {
+	matches Integer min(1)
+	moment Instant
+	reason String
+}
+
+entity Injury {
+	moment Instant
+	estReturnDate LocalDate
+	reason String
+}
+
+entity Season {
+	name String required
+    startDate LocalDate
+    endDate LocalDate
+}
+
+entity SystemConfiguration {
+	currentPeriodStartMoment Instant
+}
+
+entity ActionKey {
+	action String
+	keys String
+}
+
+entity Position {
+	name String required
+    abb String required
+}
+
+entity Country {
+	name String required
+	abb String required
+	flag Blob
+}
+
+entity GraphicElementPos {
+	name String required
+	x Double
+	y Double
+}
+
+enum Foot {
+	R ("Derecha"),
+    L ("Izquierda")
+}
+
+enum StaffMemberRole {
+	DT ("Entrenador"), 
+    DT2 ("Segundo entrenador"), 
+    PRESIDENT ("Presidente"), 
+    BOARD_MEMBER ("Miembro de la junta directiva"), 
+    MATCH_DELEGATE ("Delegado de campo"), 
+    TEAM_DELEGATE ("Delegado del equipo"),
+	MEMBER ("Miembro")
+}
+
+enum ActionType {
+	GOAL ("Gol"), 
+    YC ("Amonestación"), 
+    RC ("Expulsión"), 
+    SUB ("Sustitución"), 
+    PASS ("Pase"), 
+    CORNER ("Saque de esquina"), 
+    SHOT ("Disparo"), 
+    FK ("Lanzamiento de falta"), 
+    PK ("Penalti"), 
+    CLEARANCE ("Despeje"), 
+    TACKLE ("Entrada"), 
+    FOUL ("Falta cometida"), 
+    OFFSIDE ("Fuera de juego"), 
+    PENALTY ("Penalti cometido"),
+	PERIOD_FINISH ("Fin de periodo")
+}
+
+enum CompetitionType {
+	LEAGUE ("Liga"), 
+    CUP ("Copa")
+}
+
+relationship OneToOne {
+	Player{person(graphicsName) required} to Person
+	TeamStaffMember{person(graphicsName) required} to Person
+	Referee{person(graphicsName) required} to Person
+	BroadcastStaffMember{person(graphicsName) required} to Person
+	Match{motm} to MatchPlayer{motmMatch required}
+	Match{homeCallup} to Callup{homeMatch required}
+	Match{awayCallup} to Callup{awayMatch required}
+	Callup{captain} to MatchPlayer{captainCallup required}
+	Lineup{callup required} to Callup
+	MatchStats{match required} to Match
+	SystemConfiguration{currentSeason(name)} to Season
+	SystemConfiguration{defaultSponsorLogo(name)} to Sponsor
+	SystemConfiguration{defaultMotmSponsorLogo(name)} to Sponsor
+}
+
+//Former OneToMany
+relationship ManyToMany {
+	Callup{player} to MatchPlayer{callup}
+	Lineup{player} to MatchPlayer{lineup}
+    Position{parent(abb)} to Position{child(abb)}
+}
+
+relationship ManyToOne {
+	Team{preferredFormation(name)} to Formation
+	Person{nationality(name)} to Country
+	Player{team(graphicsName)} to Team
+	TeamStaffMember{team(graphicsName)} to Team
+	Referee{association(name)} to LocalAssociationProvince
+	LocalAssociationProvince{association(name)} to LocalAssociationRegion
+	LocalAssociationRegion{association(name)} to Association
+	Shirt{team(graphicsName)} to Team
+	Shirt{season(name)} to Season
+	Match{homeTeam(graphicsName) required} to Team
+	Match{awayTeam(graphicsName) required} to Team
+	Match{stadium(graphicsName)} to Stadium
+	Match{matchDelegate} to TeamStaffMember
+	Match{homeShirt} to Shirt
+	Match{awayShirt} to Shirt
+	Match{matchday(name)} to Matchday
+	MatchPlayer{player required} to Player
+	MatchPlayer{position(abb)} to Position
+	Callup{dt} to TeamStaffMember
+	Callup{dt2} to TeamStaffMember
+	Callup{teamDelegate} to TeamStaffMember
+	Lineup{formation(name)} to Formation
+	Action to MatchStats
+	CompetitionPlayer{player required} to Player
+	CompetitionPlayer{competition(graphicsName) required} to Competition
+	Competition{sponsor(name)} to Sponsor
+	Competition{motmSponsor(name)} to Sponsor
+	Competition{parent(graphicsName)} to Competition{child}
+	Matchday{competition(graphicsName)} to Competition
+	Deduction{team(graphicsName) required} to Team
+	Deduction{competition(graphicsName) required} to Competition
+	Suspension{person(graphicsName) required} to Person
+	Suspension{competition(graphicsName) required} to Competition
+	Injury{player required} to Player
+	GraphicElementPos{parent(name)} to GraphicElementPos{child}
+}
+
+relationship ManyToMany {
+	Team{stadium(graphicsName)} to Stadium{team}
+	Player{position(abb)} to Position{player}
+	Match{referee} to Referee{match}
+	Action{player} to Player{action}
+	CompetitionPlayer{preferredPosition(abb)} to Position{competitionPlayer}
+	Competition{team(graphicsName)} to Team{competition}
+}
+
+/* Set pagination options */
+paginate * with infinite-scroll
+/* paginate * with pagination */
+
+/* Use Data Transfer Objects (DTO) */
+dto * with mapstruct
+
+// Set service options to all except few
+service * with serviceClass
+// service all with serviceImpl except Employee, Job
+
+/* Set an angular suffix */
+/* angularSuffix * with mySuffix */
